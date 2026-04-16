@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Koyilbek Valiev</title>
+    <meta name="description" content="Featured AI and ML projects by Koyilbek Valiev." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
+    <style>
+        /* PROJECT-SPECIFIC STYLES */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .project-item {
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .project-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item h3 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .project-item h3 a:hover {
+            color: var(--accent);
+        }
+
+        .project-item p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .project-tags span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .portfolio-cta {
+            margin-top: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Koyilbek Valiev</a>
+            <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Featured Projects</h1>
+            <p>AI, ML, and NLP projects — from language models to multimodal retrieval systems.</p>
+        </div>
+
+        <div class="projects-list">
+            <div class="project-item">
+                <h3>Uzbek-English Pretrained Language Model (140M Parameters)</h3>
+                <p>
+                    Collected a diverse Uzbek-English dataset and trained a BPE tokenizer from scratch (~62,016 tokens).
+                    Built a decoder-only modified Transformer with 140.7M parameters and 1024-token context window.
+                    Pre-trained on 2x NVIDIA A100 GPUs for 16.5 hours, reaching ~3.5% cross-entropy loss.
+                    Planning instruction fine-tuning and downstream alignment.
+                </p>
+                <div class="project-tags">
+                    <span>PyTorch</span><span>Transformers</span><span>BPE</span><span>A100 GPU</span><span>Pretraining</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>LLMs from Scratch &mdash; GPT-2 Implementation &amp; Fine-Tuning</h3>
+                <p>
+                    Full GPT-2 implementation from scratch: text preprocessing, positional encodings, multi-head self-attention,
+                    pretraining with causal language modeling. Fine-tuned for spam classification and instruction tuning for prompt-following.
+                </p>
+                <div class="project-tags">
+                    <span>PyTorch</span><span>GPT-2</span><span>CLM</span><span>Instruction Tuning</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3><a href="https://github.com/Valiev-Koyiljon/Multimodal-Video-Search-and-Interaction-with-RAG" target="_blank" rel="noopener">Multimodal Video Search &amp; Interaction with RAG</a></h3>
+                <p>
+                    Retrieval-augmented video Q&amp;A integrating state-of-the-art retrieval techniques for natural language video interaction.
+                </p>
+                <div class="project-tags">
+                    <span>Whisper</span><span>LLaVA</span><span>BridgeTower</span><span>LanceDB</span><span>LangChain</span><span>Gradio</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3><a href="https://github.com/Valiev-Koyiljon/seq2seq-attention-chatbot" target="_blank" rel="noopener">Neural Conversational Chatbot</a></h3>
+                <p>
+                    Seq2seq chatbot with bidirectional GRU encoder and Luong global attention,
+                    trained on 220K+ Cornell Movie-Dialogs pairs.
+                </p>
+                <div class="project-tags">
+                    <span>PyTorch</span><span>Seq2Seq</span><span>GRU</span><span>Attention</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-cta">
+            <a href="Last_UPDATED_PORTFOLIO.pdf" class="btn btn-outline" target="_blank" rel="noopener">
+                <i class="fas fa-folder-open"></i> View Complete Portfolio
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Koyilbek Valiev. Built with care.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', open);
+        });
+    </script>
+</body>
+</html>

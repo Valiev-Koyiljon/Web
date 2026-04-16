@@ -10,105 +10,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        *, *::before, *::after {
-            margin: 0; padding: 0; box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #ffffff;
-            --bg-alt: #f8fafc;
-            --text: #1a1a2e;
-            --text-secondary: #4a5568;
-            --text-muted: #718096;
-            --accent: #2563EB;
-            --accent-hover: #1d4ed8;
-            --accent-light: #eff6ff;
-            --border: #e5e7eb;
-            --border-light: #f3f4f6;
-            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
-            --radius: 8px;
-            --max-width: 800px;
-            --transition: 0.2s ease;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        ::selection { background: var(--accent); color: #fff; }
-
-        /* NAV */
-        .nav {
-            position: sticky; top: 0; z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-inner {
-            max-width: var(--max-width);
-            margin: 0 auto; padding: 0 1.5rem;
-            height: 56px; display: flex;
-            align-items: center; justify-content: space-between;
-        }
-
-        .nav-name {
-            font-weight: 700; font-size: 1rem;
-            color: var(--text); text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex; list-style: none; gap: 0.25rem;
-        }
-
-        .nav-links a {
-            color: var(--text-muted); text-decoration: none;
-            font-size: 0.85rem; font-weight: 500;
-            padding: 0.35rem 0.65rem; border-radius: 6px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent); background: var(--accent-light);
-        }
-
-        .nav-hamburger {
-            display: none; background: none; border: none;
-            cursor: pointer; padding: 4px; flex-direction: column; gap: 4px;
-        }
-
-        .nav-hamburger span {
-            width: 20px; height: 2px; background: var(--text);
-            border-radius: 1px; transition: var(--transition);
-        }
-
-        /* LAYOUT */
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
-
-        /* PAGE HEADER */
-        .page-header {
-            padding: 3rem 0 2rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .page-header h1 {
-            font-size: 2rem; font-weight: 800;
-            letter-spacing: -0.03em; margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: var(--text-secondary); font-size: 0.95rem;
-        }
+        /* ============================================
+           RESEARCH-SPECIFIC STYLES
+           ============================================ */
 
         /* FILTERS */
         .filters {
@@ -238,9 +145,7 @@
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        .detail-body {
-            padding: 2rem 1.5rem;
-        }
+        .detail-body { padding: 2rem 1.5rem; }
 
         /* MARKDOWN RENDERED CONTENT */
         .detail-body h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
@@ -263,63 +168,22 @@
             border-radius: var(--radius); padding: 1rem;
             overflow-x: auto; margin-bottom: 1rem;
         }
-        .detail-body pre code {
-            background: none; border: none; padding: 0;
-            font-size: 0.8rem; line-height: 1.6;
-        }
-        .detail-body blockquote {
-            border-left: 3px solid var(--accent);
-            padding-left: 1rem; margin-bottom: 1rem;
-            color: var(--text-muted); font-style: italic;
-        }
+        .detail-body pre code { background: none; border: none; padding: 0; font-size: 0.8rem; line-height: 1.6; }
+        .detail-body blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin-bottom: 1rem; color: var(--text-muted); font-style: italic; }
         .detail-body img { max-width: 100%; border-radius: var(--radius); margin: 1rem 0; }
         .detail-body hr { border: none; border-top: 1px solid var(--border-light); margin: 2rem 0; }
         .detail-body table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
-        .detail-body th, .detail-body td {
-            padding: 0.5rem 0.75rem; border: 1px solid var(--border);
-            font-size: 0.85rem; text-align: left;
-        }
+        .detail-body th, .detail-body td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); font-size: 0.85rem; text-align: left; }
         .detail-body th { background: var(--bg-alt); font-weight: 600; }
 
-        /* EMPTY STATE */
-        .empty-state {
-            text-align: center; padding: 4rem 0;
-            color: var(--text-muted); font-size: 0.9rem;
-        }
-
+        /* EMPTY / LOADING */
+        .empty-state { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.9rem; }
         .empty-state i { font-size: 2rem; margin-bottom: 1rem; display: block; }
-
-        /* LOADING */
-        .loading {
-            text-align: center; padding: 3rem 0;
-            color: var(--text-muted); font-size: 0.9rem;
-        }
-
-        /* FOOTER */
-        .footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem 0; text-align: center;
-        }
-
-        .footer p { font-size: 0.8rem; color: var(--text-muted); }
+        .loading { text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; position: absolute;
-                top: 56px; left: 0; right: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(12px);
-                border-bottom: 1px solid var(--border);
-                flex-direction: column; padding: 0.75rem 1.5rem;
-            }
-            .nav-links.open { display: flex; }
-            .nav-hamburger { display: flex; }
-
             .detail-panel { width: 100vw; }
-
-            .page-header h1 { font-size: 1.5rem; }
-
             .item-card-header { flex-direction: column; gap: 0.5rem; }
         }
     </style>
@@ -327,7 +191,7 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="index.html" class="nav-name">Koyilbek Valiev</a>
             <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -336,6 +200,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="research.html" class="active">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
             </ul>
         </div>
     </nav>
@@ -351,7 +216,6 @@
             <button class="filter-btn" data-filter="paper">Papers</button>
             <button class="filter-btn" data-filter="tutorial">Tutorials</button>
             <button class="filter-btn" data-filter="note">Notes</button>
-            <button class="filter-btn" data-filter="project">Projects</button>
         </div>
 
         <div class="items-list" id="items-list">
@@ -378,20 +242,10 @@
     </footer>
 
     <script>
-        // ============================================
-        // CONFIG — Change this if your repo is different
-        // ============================================
         const RESEARCH_DIR = 'research';
-
-        // ============================================
-        // STATE
-        // ============================================
         let items = [];
         let currentFilter = 'all';
 
-        // ============================================
-        // LOAD REGISTRY & META FILES
-        // ============================================
         async function loadItems() {
             try {
                 const res = await fetch(`${RESEARCH_DIR}/registry.json`);
@@ -405,31 +259,23 @@
                             if (!metaRes.ok) return null;
                             const meta = await metaRes.json();
                             return { ...meta, folder };
-                        } catch {
-                            return null;
-                        }
+                        } catch { return null; }
                     })
                 );
 
-                items = loaded.filter(Boolean).sort((a, b) => {
-                    return new Date(b.date || '2000-01-01') - new Date(a.date || '2000-01-01');
-                });
-
+                items = loaded.filter(Boolean).sort((a, b) =>
+                    new Date(b.date || '2000-01-01') - new Date(a.date || '2000-01-01')
+                );
                 renderItems();
-            } catch (err) {
+            } catch {
                 document.getElementById('items-list').innerHTML =
                     '<div class="empty-state"><i class="fas fa-folder-open"></i>No research items found yet.<br/>Add folders to <code>research/</code> and update <code>registry.json</code>.</div>';
             }
         }
 
-        // ============================================
-        // RENDER ITEMS
-        // ============================================
         function renderItems() {
             const list = document.getElementById('items-list');
-            const filtered = currentFilter === 'all'
-                ? items
-                : items.filter(i => i.type === currentFilter);
+            const filtered = currentFilter === 'all' ? items : items.filter(i => i.type === currentFilter);
 
             if (filtered.length === 0) {
                 list.innerHTML = '<div class="empty-state"><i class="fas fa-folder-open"></i>No items in this category yet.</div>';
@@ -451,7 +297,6 @@
                 </div>
             `).join('');
 
-            // Click handlers
             list.querySelectorAll('.item-card').forEach(card => {
                 card.addEventListener('click', () => openDetail(card.dataset.folder));
             });
@@ -462,9 +307,6 @@
             return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
         }
 
-        // ============================================
-        // DETAIL PANEL
-        // ============================================
         async function openDetail(folder) {
             const item = items.find(i => i.folder === folder);
             if (!item) return;
@@ -478,10 +320,7 @@
             body.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
 
             overlay.classList.add('open');
-            // Small delay for animation
-            requestAnimationFrame(() => {
-                panel.classList.add('open');
-            });
+            requestAnimationFrame(() => { panel.classList.add('open'); });
             document.body.style.overflow = 'hidden';
 
             try {
@@ -495,7 +334,7 @@
                     ${item.description ? `<p>${item.description}</p>` : ''}
                     ${item.venue ? `<p><strong>Venue:</strong> ${item.venue}</p>` : ''}
                     ${item.link ? `<p><a href="${item.link}" target="_blank" rel="noopener">View Paper &rarr;</a></p>` : ''}
-                    <p style="color: var(--text-muted); margin-top: 2rem;"><em>No README.md found in this folder. Add one to show full content here.</em></p>
+                    <p style="color: var(--text-muted); margin-top: 2rem;"><em>No README.md found. Add one to show full content here.</em></p>
                 `;
             }
         }
@@ -510,9 +349,6 @@
         document.getElementById('detail-overlay').addEventListener('click', closeDetail);
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
 
-        // ============================================
-        // FILTERS
-        // ============================================
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -522,9 +358,6 @@
             });
         });
 
-        // ============================================
-        // HAMBURGER
-        // ============================================
         const hamburger = document.querySelector('.nav-hamburger');
         const navLinks = document.querySelector('.nav-links');
         hamburger.addEventListener('click', () => {
@@ -532,9 +365,6 @@
             hamburger.setAttribute('aria-expanded', open);
         });
 
-        // ============================================
-        // INIT
-        // ============================================
         loadItems();
     </script>
 </body>
