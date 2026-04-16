@@ -1,4 +1,5 @@
 [
   "rl-smartgrid",
-  "vision-transformer"
+  "vision-transformer",
+  "deit"
 ]

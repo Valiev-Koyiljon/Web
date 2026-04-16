@@ -1,0 +1,9 @@
+{
+  "title": "DeiT — Data-Efficient Image Transformers & Distillation Through Attention",
+  "type": "tutorial",
+  "date": "2026-04-16",
+  "description": "Deep-dive tutorial: how Facebook trained ViT without 300M images using knowledge distillation, strong augmentation, and a novel distillation token.",
+  "venue": "Based on Touvron et al., ICML 2021",
+  "link": "https://arxiv.org/abs/2012.12877",
+  "status": "published"
+}
