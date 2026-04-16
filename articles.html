@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles — Koyilbek Valiev</title>
+    <meta name="description" content="Articles on AI engineering, production ML, agentic systems, and career reflections by Koyilbek Valiev." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/shared.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* ============================================
+           ARTICLES-SPECIFIC STYLES
+           ============================================ */
+
+        /* CATEGORY FILTERS */
+        .filters {
+            padding: 1.5rem 0;
+            display: flex; gap: 0.5rem; flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .filter-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem; font-weight: 500;
+            padding: 0.4rem 1rem; border-radius: 6px;
+            background: var(--bg); border: 1px solid var(--border);
+            color: var(--text-muted); cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ARTICLES LIST */
+        .articles-list {
+            padding: 2rem 0;
+            display: flex; flex-direction: column; gap: 0;
+        }
+
+        .article-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .article-card:first-child {
+            padding-top: 0;
+        }
+
+        .article-card:last-child {
+            border-bottom: none;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--accent);
+        }
+
+        .article-body {
+            flex: 1;
+        }
+
+        .article-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
+            transition: var(--transition);
+        }
+
+        .article-description {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .article-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .article-category {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .article-category.general { background: #f3f4f6; color: #4b5563; }
+        .article-category.technical { background: #eff6ff; color: #2563eb; }
+        .article-category.career { background: #fef3c7; color: #92400e; }
+        .article-category.tutorial { background: #f0fdf4; color: #16a34a; }
+        .article-category.opinion { background: #faf5ff; color: #9333ea; }
+
+        .article-read-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .article-arrow {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            padding-top: 0.2rem;
+            transition: var(--transition);
+        }
+
+        .article-card:hover .article-arrow {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        /* ARTICLE READER VIEW */
+        .reader {
+            display: none;
+        }
+
+        .reader.open {
+            display: block;
+        }
+
+        .reader-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 1.5rem 0 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        .reader-back:hover {
+            color: var(--accent);
+        }
+
+        .reader-header {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+        }
+
+        .reader-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        .reader-header .article-meta {
+            margin-bottom: 0;
+        }
+
+        .reader-content h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        .reader-content h2 { font-size: 1.2rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .reader-content h3 { font-size: 1.05rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .reader-content p { margin-bottom: 1rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.9; }
+        .reader-content strong { color: var(--text); }
+        .reader-content a { color: var(--accent); text-decoration: none; }
+        .reader-content a:hover { text-decoration: underline; }
+        .reader-content ul, .reader-content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+        .reader-content li { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 0.25rem; }
+        .reader-content code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem; background: var(--bg-alt);
+            border: 1px solid var(--border); border-radius: 4px;
+            padding: 0.15rem 0.4rem;
+        }
+        .reader-content pre {
+            background: var(--bg-alt); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1rem;
+            overflow-x: auto; margin-bottom: 1rem;
+        }
+        .reader-content pre code { background: none; border: none; padding: 0; font-size: 0.8rem; line-height: 1.6; }
+        .reader-content blockquote {
+            border-left: 3px solid var(--accent); padding-left: 1rem;
+            margin-bottom: 1rem; color: var(--text-muted); font-style: italic;
+        }
+        .reader-content img { max-width: 100%; border-radius: var(--radius); margin: 1rem 0; }
+        .reader-content hr { border: none; border-top: 1px solid var(--border-light); margin: 2rem 0; }
+
+        /* EMPTY / LOADING */
+        .empty-state { text-align: center; padding: 4rem 0; color: var(--text-muted); font-size: 0.9rem; }
+        .empty-state i { font-size: 2rem; margin-bottom: 1rem; display: block; }
+        .loading { text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .article-card { flex-direction: row; }
+            .reader-header h1 { font-size: 1.4rem; }
+        }
+
+        @media (max-width: 480px) {
+            .article-meta { gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-name">Koyilbek Valiev</a>
+            <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="articles.html" class="active">Articles</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- LIST VIEW -->
+        <div id="list-view">
+            <div class="page-header">
+                <h1>Articles</h1>
+                <p>Thoughts on AI engineering, building production systems, and lessons from the field.</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+                <button class="filter-btn" data-filter="tutorial">Tutorial</button>
+                <button class="filter-btn" data-filter="career">Career</button>
+                <button class="filter-btn" data-filter="opinion">Opinion</button>
+                <button class="filter-btn" data-filter="general">General</button>
+            </div>
+
+            <div class="articles-list" id="articles-list">
+                <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
+            </div>
+        </div>
+
+        <!-- READER VIEW -->
+        <div class="reader" id="reader-view">
+            <button class="reader-back" id="reader-back">
+                <i class="fas fa-arrow-left"></i> Back to articles
+            </button>
+            <div class="reader-header">
+                <h1 id="reader-title"></h1>
+                <div class="article-meta">
+                    <span class="article-date" id="reader-date"></span>
+                    <span class="article-category" id="reader-category"></span>
+                    <span class="article-read-time" id="reader-time"></span>
+                </div>
+            </div>
+            <div class="reader-content" id="reader-content"></div>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Koyilbek Valiev. Built with care.</p>
+        </div>
+    </footer>
+
+    <script>
+        const ARTICLES_DIR = 'articles';
+        let articles = [];
+        let currentFilter = 'all';
+
+        async function loadArticles() {
+            try {
+                const res = await fetch(`${ARTICLES_DIR}/registry.json`);
+                if (!res.ok) throw new Error('registry.json not found');
+                const folders = await res.json();
+
+                const loaded = await Promise.all(
+                    folders.map(async (folder) => {
+                        try {
+                            const metaRes = await fetch(`${ARTICLES_DIR}/${folder}/meta.json`);
+                            if (!metaRes.ok) return null;
+                            const meta = await metaRes.json();
+                            return { ...meta, folder };
+                        } catch { return null; }
+                    })
+                );
+
+                articles = loaded.filter(Boolean).sort((a, b) =>
+                    new Date(b.date || '2000-01-01') - new Date(a.date || '2000-01-01')
+                );
+                renderArticles();
+            } catch {
+                document.getElementById('articles-list').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-pen-nib"></i>No articles yet. Check back soon.</div>';
+            }
+        }
+
+        function renderArticles() {
+            const list = document.getElementById('articles-list');
+            const filtered = currentFilter === 'all'
+                ? articles
+                : articles.filter(a => a.category === currentFilter);
+
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="empty-state"><i class="fas fa-pen-nib"></i>No articles in this category yet.</div>';
+                return;
+            }
+
+            list.innerHTML = filtered.map(a => `
+                <div class="article-card" data-folder="${a.folder}">
+                    <div class="article-body">
+                        <div class="article-title">${a.title}</div>
+                        ${a.description ? `<div class="article-description">${a.description}</div>` : ''}
+                        <div class="article-meta">
+                            <span class="article-date">${formatDate(a.date)}</span>
+                            <span class="article-category ${a.category || 'general'}">${a.category || 'general'}</span>
+                            ${a.readTime ? `<span class="article-read-time"><i class="fas fa-clock"></i> ${a.readTime}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="article-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            `).join('');
+
+            list.querySelectorAll('.article-card').forEach(card => {
+                card.addEventListener('click', () => openArticle(card.dataset.folder));
+            });
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        async function openArticle(folder) {
+            const article = articles.find(a => a.folder === folder);
+            if (!article) return;
+
+            document.getElementById('reader-title').textContent = article.title;
+            document.getElementById('reader-date').textContent = formatDate(article.date);
+            const catEl = document.getElementById('reader-category');
+            catEl.textContent = article.category || 'general';
+            catEl.className = `article-category ${article.category || 'general'}`;
+            document.getElementById('reader-time').textContent = article.readTime ? article.readTime : '';
+
+            const content = document.getElementById('reader-content');
+            content.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+
+            document.getElementById('list-view').style.display = 'none';
+            document.getElementById('reader-view').classList.add('open');
+            window.scrollTo(0, 0);
+
+            try {
+                const res = await fetch(`${ARTICLES_DIR}/${folder}/README.md`);
+                if (!res.ok) throw new Error();
+                const md = await res.text();
+                content.innerHTML = marked.parse(md);
+            } catch {
+                content.innerHTML = `<p>${article.description || 'Content not available.'}</p>`;
+            }
+
+            // Update URL hash for shareability
+            history.pushState({ folder }, '', `#${folder}`);
+        }
+
+        function closeArticle() {
+            document.getElementById('reader-view').classList.remove('open');
+            document.getElementById('list-view').style.display = 'block';
+            history.pushState({}, '', 'articles.html');
+            window.scrollTo(0, 0);
+        }
+
+        document.getElementById('reader-back').addEventListener('click', closeArticle);
+
+        // Handle browser back button
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.folder) {
+                openArticle(e.state.folder);
+            } else {
+                closeArticle();
+            }
+        });
+
+        // Handle direct link to article via hash
+        function checkHash() {
+            const hash = window.location.hash.slice(1);
+            if (hash && articles.length > 0) {
+                const found = articles.find(a => a.folder === hash);
+                if (found) openArticle(hash);
+            }
+        }
+
+        // Filters
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderArticles();
+            });
+        });
+
+        // Hamburger
+        const hamburger = document.querySelector('.nav-hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', open);
+        });
+
+        // Init
+        loadArticles().then(checkHash);
+    </script>
+</body>
+</html>
