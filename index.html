@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Koyilbek Valiev — AI / ML Engineer | Research Engineer</title>
-    <meta name="description" content="AI / ML Engineer and Research Engineer with 3+ years of experience in AI agents, computer vision, multimodal learning, experiment tracking, and intelligent systems." />
-    <meta name="keywords" content="AI Engineer, ML Engineer, Research Engineer, AI Agents, Computer Vision, Multimodal AI, VLM, LLM, Agentic AI, Experiment Tracking" />
+    <meta name="description" content="AI / ML Engineer and Research Engineer with 3+ years of experience in AI agents, computer vision, multimodal learning, and intelligent systems." />
     <meta name="author" content="Koyilbek Valiev" />
-
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
-
     <style>
         /* ============================================
            RESET & VARIABLES
@@ -26,132 +22,70 @@
         }
 
         :root {
-            --bg-primary: #0b0f1a;
-            --bg-secondary: #111627;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
-            --primary: #6C63FF;
-            --primary-light: #8B83FF;
-            --accent: #00D4AA;
-            --accent-light: #33DDBB;
-            --highlight: #FF6B6B;
-            --text-primary: #E8E8E8;
-            --text-secondary: #8892B0;
-            --text-muted: #5A6380;
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(108, 99, 255, 0.3);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --shadow-glow: 0 0 30px rgba(108, 99, 255, 0.15);
-            --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            --radius-full: 9999px;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --max-width: 1100px;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --accent: #2563EB;
+            --accent-hover: #1d4ed8;
+            --accent-light: #eff6ff;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07);
+            --radius: 8px;
+            --max-width: 800px;
+            --transition: 0.2s ease;
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 72px;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.7;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ============================================
-           BACKGROUND
-           ============================================ */
-        .bg-gradient-orbs {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .bg-gradient-orbs::before {
-            content: '';
-            position: absolute;
-            top: -20%;
-            left: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
-            animation: orbFloat1 20s ease-in-out infinite;
-        }
-
-        .bg-gradient-orbs::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 212, 170, 0.06) 0%, transparent 70%);
-            animation: orbFloat2 25s ease-in-out infinite;
-        }
-
-        @keyframes orbFloat1 {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(80px, 40px); }
-            66% { transform: translate(-40px, 80px); }
-        }
-
-        @keyframes orbFloat2 {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(-60px, -30px); }
-            66% { transform: translate(30px, -60px); }
+        ::selection {
+            background: var(--accent);
+            color: #fff;
         }
 
         /* ============================================
            NAVIGATION
            ============================================ */
         .nav {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            background: rgba(11, 15, 26, 0.85);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .nav.scrolled {
-            box-shadow: var(--shadow-sm);
         }
 
         .nav-inner {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 2rem;
-            height: 70px;
+            padding: 0 1.5rem;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .nav-logo {
+        .nav-name {
             font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
+            font-size: 1rem;
+            color: var(--text);
             text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-logo span {
-            color: var(--primary);
         }
 
         .nav-links {
@@ -161,225 +95,139 @@
         }
 
         .nav-links a {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-full);
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
             transition: var(--transition);
         }
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--text-primary);
-            background: rgba(108, 99, 255, 0.1);
+            color: var(--accent);
+            background: var(--accent-light);
         }
 
         .nav-hamburger {
             display: none;
-            flex-direction: column;
-            gap: 5px;
             background: none;
             border: none;
             cursor: pointer;
             padding: 4px;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .nav-hamburger span {
-            width: 24px;
+            width: 20px;
             height: 2px;
-            background: var(--text-secondary);
-            border-radius: 2px;
+            background: var(--text);
+            border-radius: 1px;
             transition: var(--transition);
         }
 
-        .nav-hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .nav-hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .nav-hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
         /* ============================================
-           SECTIONS — SHARED
+           LAYOUT
            ============================================ */
-        .section {
-            padding: 5rem 2rem;
-        }
-
-        .section-inner {
+        .container {
             max-width: var(--max-width);
             margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
+        .section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid var(--border-light);
         }
 
-        .section-label::before {
-            content: '';
-            width: 20px;
-            height: 1px;
-            background: var(--primary);
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
         }
 
         .section-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
         }
 
         /* ============================================
-           GLASS CARD
-           ============================================ */
-        .card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-glow);
-        }
-
-        /* ============================================
-           HERO SECTION
+           HERO
            ============================================ */
         .hero {
-            min-height: 100vh;
+            padding: 4rem 0 3rem;
+        }
+
+        .hero-layout {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 4rem;
+            gap: 2.5rem;
+            align-items: flex-start;
         }
 
-        .hero-inner {
-            max-width: var(--max-width);
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .hero-avatar-wrapper {
-            flex-shrink: 0;
-        }
-
-        .hero-avatar {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            box-shadow: 0 0 40px rgba(108, 99, 255, 0.2), 0 0 80px rgba(108, 99, 255, 0.05);
-        }
-
-        .hero-avatar img {
-            width: 100%;
-            height: 100%;
+        .hero-photo {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            display: block;
+            border: 3px solid var(--border);
+            flex-shrink: 0;
         }
 
         .hero-content {
             flex: 1;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.2);
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0.4rem 1rem;
-            border-radius: var(--radius-full);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: statusPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes statusPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
         .hero-name {
-            font-size: 3.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            margin-bottom: 0.25rem;
+            color: var(--text);
         }
 
-        .hero-role {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .hero-role strong {
-            color: var(--primary-light);
+        .hero-title {
+            font-size: 1.05rem;
+            color: var(--accent);
             font-weight: 600;
+            margin-bottom: 0.75rem;
         }
 
-        .hero-summary {
-            font-size: 1rem;
+        .hero-bio {
             color: var(--text-secondary);
-            max-width: 560px;
-            margin-bottom: 2rem;
+            font-size: 0.95rem;
             line-height: 1.8;
+            margin-bottom: 1.25rem;
+            max-width: 600px;
         }
 
         .hero-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
+            margin-bottom: 1rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.75rem;
-            border-radius: var(--radius-full);
-            font-size: 0.9rem;
+            gap: 0.4rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
             font-weight: 600;
+            border-radius: 6px;
             text-decoration: none;
             transition: var(--transition);
             border: none;
@@ -387,450 +235,485 @@
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: var(--accent);
             color: #fff;
         }
 
         .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+            background: var(--accent-hover);
         }
 
         .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1.5px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
         }
 
         .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary-light);
-            transform: translateY(-2px);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-social {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .hero-social a {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            transition: var(--transition);
+        }
+
+        .hero-social a:hover {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           NEWS / UPDATES
+           ============================================ */
+        .news-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 1rem;
+            align-items: baseline;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .news-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .news-text {
+            color: var(--text-secondary);
+        }
+
+        .news-text strong {
+            color: var(--text);
+        }
+
+        .news-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .news-text a:hover {
+            text-decoration: underline;
         }
 
         /* ============================================
            EXPERIENCE
            ============================================ */
-        .timeline {
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 7px;
-            top: 8px;
-            bottom: 8px;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent), transparent);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -2.5rem;
-            top: 2rem;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--bg-primary);
-            border: 2px solid var(--primary);
-            z-index: 2;
-        }
-
-        .timeline-item:first-child .timeline-dot {
-            background: var(--primary);
-            box-shadow: 0 0 12px rgba(108, 99, 255, 0.4);
-        }
-
-        .exp-header {
+        .exp-list {
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 2rem;
         }
 
-        .exp-title {
-            font-size: 1.25rem;
+        .exp-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1.5rem;
+        }
+
+        .exp-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding-top: 0.15rem;
+            line-height: 1.6;
+        }
+
+        .exp-body h3 {
+            font-size: 1rem;
             font-weight: 700;
-            color: var(--text-primary);
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+
+        .exp-body .exp-org {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .exp-body ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .exp-body li {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .exp-body li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
         }
 
         .exp-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: linear-gradient(135deg, var(--primary), #9B59B6);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius-full);
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            background: var(--accent-light);
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
+            margin-left: 0.5rem;
+            vertical-align: middle;
         }
 
-        .exp-meta {
+        /* ============================================
+           PUBLICATIONS
+           ============================================ */
+        .pub-list {
             display: flex;
+            flex-direction: column;
             gap: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
         }
 
-        .exp-meta span {
+        .pub-item {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .pub-item:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            line-height: 1.5;
+        }
+
+        .pub-title a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            color: var(--accent);
+        }
+
+        .pub-authors {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .pub-authors .me {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .pub-venue {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .pub-link {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
+            gap: 0.25rem;
+        }
+
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================
+           PATENTS
+           ============================================ */
+        .patent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .patent-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .patent-info h4 {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+
+        .patent-info p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .patent-status {
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .patent-status.reviewed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .patent-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ============================================
+           SKILLS
+           ============================================ */
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-group h4 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.6rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.4rem;
         }
 
-        .exp-description ul {
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+
+        /* ============================================
+           EDUCATION
+           ============================================ */
+        .edu-item {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1.5rem;
+        }
+
+        .edu-period {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            padding-top: 0.15rem;
+        }
+
+        .edu-body h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .edu-body .edu-school {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-body p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           ACHIEVEMENTS
+           ============================================ */
+        .achievements-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
         }
 
-        .exp-description li {
-            color: var(--text-secondary);
+        .achievements-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
             font-size: 0.92rem;
-            line-height: 1.7;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-
-        .exp-description li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.65em;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--primary);
-        }
-
-        /* ============================================
-           SKILLS
-           ============================================ */
-        .skills-categories {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .skill-category {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition);
-        }
-
-        .skill-category:hover {
-            border-color: var(--border-hover);
-        }
-
-        .skill-category-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .skill-category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .skill-category-icon.ml { background: rgba(108, 99, 255, 0.15); color: var(--primary-light); }
-        .skill-category-icon.agent { background: rgba(0, 212, 170, 0.15); color: var(--accent); }
-        .skill-category-icon.data { background: rgba(255, 107, 107, 0.15); color: var(--highlight); }
-        .skill-category-icon.cv { background: rgba(255, 193, 7, 0.15); color: #FFC107; }
-        .skill-category-icon.devops { background: rgba(33, 150, 243, 0.15); color: #2196F3; }
-        .skill-category-icon.acad { background: rgba(156, 39, 176, 0.15); color: #CE93D8; }
-
-        .skill-category-name {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-primary);
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 500;
-            padding: 0.4rem 0.85rem;
-            border-radius: var(--radius-full);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border);
             color: var(--text-secondary);
-            transition: var(--transition);
-            cursor: default;
+            line-height: 1.6;
         }
 
-        .skill-tag:hover {
-            color: var(--text-primary);
-            border-color: var(--primary);
-            background: rgba(108, 99, 255, 0.08);
-            transform: translateY(-2px);
-        }
-
-        /* ============================================
-           EDUCATION
-           ============================================ */
-        .edu-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-        }
-
-        .edu-icon {
-            width: 56px;
-            height: 56px;
-            border-radius: var(--radius-md);
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: #fff;
+        .achievements-list li i {
+            color: var(--accent);
+            font-size: 0.8rem;
             flex-shrink: 0;
-        }
-
-        .edu-details h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-        }
-
-        .edu-details .edu-meta {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-
-        .edu-details .edu-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .edu-details p {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.8;
         }
 
         /* ============================================
            PROJECTS
            ============================================ */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        .projects-list {
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
-        .project-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        .project-item {
+            padding: 1.25rem;
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
+            border-radius: var(--radius);
             transition: var(--transition);
         }
 
-        .project-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-glow);
+        .project-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-sm);
         }
 
-        .project-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            background: rgba(108, 99, 255, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--primary-light);
-            margin-bottom: 1.25rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 1.25rem;
-            flex: 1;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .project-tech span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.6rem;
-            border-radius: var(--radius-full);
-            background: rgba(108, 99, 255, 0.08);
-            color: var(--primary-light);
-            border: 1px solid rgba(108, 99, 255, 0.15);
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--primary-light);
-            font-size: 0.85rem;
+        .project-item h4 {
+            font-size: 0.95rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
+            margin-bottom: 0.4rem;
         }
 
-        .project-link:hover {
+        .project-item h4 a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .project-item h4 a:hover {
             color: var(--accent);
         }
 
-        .project-link i {
-            font-size: 0.75rem;
-            transition: transform var(--transition);
+        .project-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.6rem;
         }
 
-        .project-link:hover i {
-            transform: translateX(3px);
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .project-tags span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 3px;
+            background: var(--accent-light);
+            color: var(--accent);
         }
 
         /* ============================================
            CONTACT
            ============================================ */
         .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .contact-item {
+        .contact-row {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.25rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        .contact-item-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            background: rgba(108, 99, 255, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-light);
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .contact-item-text h4 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.15rem;
-        }
-
-        .contact-item-text p {
-            font-size: 0.9rem;
-            color: var(--text-primary);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
             gap: 0.75rem;
+            font-size: 0.9rem;
         }
 
-        .social-link {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
+        .contact-row i {
+            color: var(--text-muted);
+            width: 18px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .contact-row a {
+            color: var(--accent);
             text-decoration: none;
-            font-size: 1.1rem;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-social a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
             transition: var(--transition);
         }
 
-        .social-link:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(108, 99, 255, 0.3);
+        .contact-social a:hover {
+            color: var(--accent);
         }
 
         /* ============================================
@@ -838,162 +721,84 @@
            ============================================ */
         .footer {
             border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
+            padding: 2rem 0;
+            text-align: center;
         }
 
-        .footer-inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-copy {
+        .footer p {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-light);
-        }
-
-        /* ============================================
-           SCROLL REVEAL
-           ============================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* ============================================
            RESPONSIVE
            ============================================ */
-        @media (max-width: 1024px) {
-            .hero-inner {
-                gap: 3rem;
-            }
-            .hero-name {
-                font-size: 2.75rem;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: 56px;
                 left: 0;
                 right: 0;
-                background: rgba(11, 15, 26, 0.95);
-                backdrop-filter: blur(24px);
-                -webkit-backdrop-filter: blur(24px);
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(12px);
                 border-bottom: 1px solid var(--border);
                 flex-direction: column;
-                padding: 1rem;
-                gap: 0.25rem;
+                padding: 0.75rem 1.5rem;
             }
 
             .nav-links.open {
                 display: flex;
             }
 
-            .nav-links a {
-                padding: 0.75rem 1rem;
-                width: 100%;
-            }
-
             .nav-hamburger {
                 display: flex;
             }
 
-            .hero {
-                padding: 5rem 1.5rem 3rem;
-                min-height: auto;
-            }
-
-            .hero-inner {
+            .hero-layout {
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
-                gap: 2rem;
             }
 
-            .hero-name {
-                font-size: 2.25rem;
+            .hero-photo {
+                width: 120px;
+                height: 120px;
             }
 
-            .hero-role {
-                font-size: 1.1rem;
+            .hero-actions,
+            .hero-social {
+                justify-content: center;
             }
 
-            .hero-summary {
+            .hero-bio {
                 margin-left: auto;
                 margin-right: auto;
             }
 
-            .hero-actions {
-                justify-content: center;
-            }
-
-            .hero-avatar {
-                width: 160px;
-                height: 160px;
+            .exp-item,
+            .edu-item {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
             }
 
             .section {
-                padding: 3.5rem 1.5rem;
+                padding: 2.5rem 0;
             }
 
-            .section-title {
-                font-size: 1.75rem;
+            .hero {
+                padding: 2.5rem 0 2rem;
             }
 
-            .exp-header {
+            .patent-item {
                 flex-direction: column;
                 gap: 0.5rem;
-            }
-
-            .timeline {
-                padding-left: 2rem;
-            }
-
-            .timeline-dot {
-                left: -2rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
             }
         }
 
         @media (max-width: 480px) {
             .hero-name {
-                font-size: 1.85rem;
+                font-size: 1.6rem;
             }
 
             .hero-actions {
@@ -1005,339 +810,332 @@
                 justify-content: center;
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .news-item {
+                flex-direction: column;
+                gap: 0.15rem;
             }
 
-            .skill-tags {
-                gap: 0.4rem;
-            }
-
-            .skill-tag {
-                font-size: 0.72rem;
-                padding: 0.35rem 0.7rem;
+            .news-date {
+                min-width: auto;
             }
         }
     </style>
 </head>
-
 <body>
-    <!-- Background -->
-    <div class="bg-gradient-orbs"></div>
 
     <!-- Navigation -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">Koyilbek<span>.</span></a>
-            <button class="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
+            <a href="#" class="nav-name">Koyilbek Valiev</a>
+            <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <main>
+    <main class="container">
+
         <!-- ===== HERO ===== -->
         <section class="hero" id="about">
-            <div class="hero-inner">
-                <div class="hero-avatar-wrapper">
-                    <div class="hero-avatar">
-                        <img src="images/QoyilbekniRasmi.jpg" alt="Koyilbek Valiev — AI / ML Engineer | Research Engineer" />
-                    </div>
-                </div>
+            <div class="hero-layout">
+                <img src="images/QoyilbekniRasmi.jpg" alt="Koyilbek Valiev" class="hero-photo" />
                 <div class="hero-content">
-                    <div class="hero-badge">Currently @ TelecomSoft, Tashkent</div>
                     <h1 class="hero-name">Koyilbek Valiev</h1>
-                    <p class="hero-role">
-                        <strong>AI / ML Engineer | Research Engineer</strong> &mdash; AI Agents, Computer Vision, Multimodal Learning &amp; Intelligent Systems
-                    </p>
-                    <p class="hero-summary">
-                        AI / ML Engineer with 3+ years of hands-on experience in computer vision, AI agents,
-                        vision-language models, and end-to-end ML pipelines. Proven success in video anomaly detection,
-                        time series forecasting, multimodal retrieval, and agentic AI systems. Passionate about building
-                        autonomous AI agents, VLM/LLM-based techniques, retrieval-augmented generation, experiment tracking,
-                        and scalable intelligent system design.
+                    <p class="hero-title">AI / ML Engineer | Research Engineer</p>
+                    <p class="hero-bio">
+                        AI / ML Engineer with 3+ years of experience in AI agents, computer vision,
+                        vision-language models, and end-to-end ML pipelines. Currently building autonomous
+                        AI agents at TelecomSoft in Tashkent. Experienced in video anomaly detection,
+                        time series forecasting, multimodal retrieval, agentic AI systems, ASR/TTS integration,
+                        experiment tracking, and scalable intelligent system design.
                     </p>
                     <div class="hero-actions">
                         <a href="Koyiljon_CV.pdf" class="btn btn-primary" target="_blank" rel="noopener">
                             <i class="fas fa-download"></i> Download CV
                         </a>
                         <a href="Last_UPDATED_PORTFOLIO.pdf" class="btn btn-outline" target="_blank" rel="noopener">
-                            <i class="fas fa-briefcase"></i> View Portfolio
+                            <i class="fas fa-folder-open"></i> Portfolio
                         </a>
+                    </div>
+                    <div class="hero-social">
+                        <a href="https://github.com/Valiev-Koyiljon" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/koyiljonvaliev2003/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://medium.com/@valievkoyiljon112" target="_blank" rel="noopener" aria-label="Medium"><i class="fab fa-medium"></i></a>
+                        <a href="https://www.youtube.com/@KoyiljonValiev" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://jovian.com/valievkoyiljon112" target="_blank" rel="noopener" aria-label="Jovian"><i class="fas fa-code"></i></a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ===== NEWS ===== -->
+        <section class="section" id="news">
+            <h2 class="section-title"><i class="fas fa-bolt"></i>News &amp; Updates</h2>
+            <ul class="news-list">
+                <li class="news-item">
+                    <span class="news-date">Jan 2026</span>
+                    <span class="news-text">Joined <strong>TelecomSoft</strong> in Tashkent as AI / ML Engineer, building autonomous customer support agents</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">Mar 2025</span>
+                    <span class="news-text">Started co-op at <strong>Pia Space, Seoul</strong> working on multimodal AI for video anomaly detection</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">Feb 2024</span>
+                    <span class="news-text">Promoted to <strong>AI Team Lead</strong> at Recs Innovation, leading solar forecasting and anomaly detection projects</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">Dec 2023</span>
+                    <span class="news-text">Won <strong>1st place</strong> in Woosong University Capstone Competition for AI-powered trash bag detection</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">2024</span>
+                    <span class="news-text">Filed <strong>two patent applications</strong> for smart grid technology</span>
+                </li>
+            </ul>
+        </section>
+
         <!-- ===== EXPERIENCE ===== -->
         <section class="section" id="experience">
-            <div class="section-inner">
-                <div class="section-label">Career</div>
-                <h2 class="section-title">Work Experience</h2>
+            <h2 class="section-title"><i class="fas fa-briefcase"></i>Experience</h2>
 
-                <div class="timeline">
-                    <!-- TelecomSoft -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div>
-                                    <div class="exp-title">AI / ML Engineer</div>
-                                </div>
-                                <span class="exp-badge"><i class="fas fa-sparkles"></i> Current</span>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-building"></i> TelecomSoft, Tashkent, Uzbekistan</span>
-                                <span><i class="fas fa-calendar-alt"></i> Jan 2026 &ndash; Present</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li>Built autonomous AI agents from scratch that automate customer support with high accuracy and human-style conversations, leveraging external tool use and multi-skill orchestration</li>
-                                    <li>Integrated ASR and TTS pipelines end-to-end, enabling natural voice-based agent interactions with support for diverse accents and dialects</li>
-                                    <li>Developed multi-agent architectures with function calling, tool use, and orchestrated workflows for complex customer queries</li>
-                                    <li>Designed NLU modules capable of understanding varied chat styles, accents, and multilingual customer inputs</li>
-                                    <li>Deployed open-source models to production, built API-connected backend services, and developed web-based UI for real-time agent monitoring and interaction</li>
-                                    <li>Designed benchmarks and evaluation pipelines to assess AI agent workflows, measuring accuracy, latency, and end-to-end performance across different scenarios</li>
-                                    <li>Built observability and tracing infrastructure to track agent decisions, tool calls, and conversation quality throughout the entire pipeline</li>
-                                </ul>
-                            </div>
+            <div class="exp-list">
+                <!-- TelecomSoft -->
+                <div class="exp-item">
+                    <div class="exp-period">Jan 2026 &ndash;<br/>Present</div>
+                    <div class="exp-body">
+                        <h3>AI / ML Engineer <span class="exp-badge">Current</span></h3>
+                        <div class="exp-org">TelecomSoft, Tashkent, Uzbekistan</div>
+                        <ul>
+                            <li>Built autonomous AI agents from scratch that automate customer support with high accuracy and human-style conversations, leveraging external tool use and multi-skill orchestration</li>
+                            <li>Integrated ASR and TTS pipelines end-to-end, enabling natural voice-based agent interactions with support for diverse accents and dialects</li>
+                            <li>Developed multi-agent architectures with function calling, tool use, and orchestrated workflows for complex customer queries</li>
+                            <li>Designed NLU modules capable of understanding varied chat styles, accents, and multilingual customer inputs</li>
+                            <li>Deployed open-source models to production, built API-connected backend services, and developed web-based UI for real-time agent monitoring and interaction</li>
+                            <li>Designed benchmarks and evaluation pipelines to assess AI agent workflows, measuring accuracy, latency, and end-to-end performance across different scenarios</li>
+                            <li>Built observability and tracing infrastructure to track agent decisions, tool calls, and conversation quality throughout the entire pipeline</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Pia Space -->
+                <div class="exp-item">
+                    <div class="exp-period">Mar 2025 &ndash;<br/>Jun 2025</div>
+                    <div class="exp-body">
+                        <h3>Multimodal AI Engineer (Co-op)</h3>
+                        <div class="exp-org">Pia Space, Seoul, South Korea</div>
+                        <ul>
+                            <li>Collected and annotated diverse anomaly video datasets (violence, falls) using CVAT and proprietary tools</li>
+                            <li>Optimized lightweight VLMs (&lt;1B params) for video anomaly classification with dynamic sampling and prompt engineering in few-/zero-shot settings</li>
+                            <li>Co-developed MACS 3.0, a prompt-driven multimodal system for CCTV anomaly detection, improving accuracy by ~24%</li>
+                            <li>Built benchmark dataset with manually captioned videos for cross-modal retrieval (video-to-text, text-to-video, video-to-video)</li>
+                            <li>Developed and evaluated cross-modal retrieval models to enhance scalable multimodal video understanding</li>
+                            <li>Implemented multimodal explanation maps for VLMs, generating visualizations that highlight key words and regions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recs Innovation -->
+                <div class="exp-item">
+                    <div class="exp-period">Feb 2024 &ndash;<br/>Mar 2025</div>
+                    <div class="exp-body">
+                        <h3>AI Team Lead | AI Engineer (Co-op)</h3>
+                        <div class="exp-org">Recs Innovation Ltd, Naju, South Korea</div>
+                        <ul>
+                            <li>Built ML pipeline (cleaning, anomaly detection, feature engineering, clustering) reducing bidding prediction error to 0.0017% and increasing bid win rate by 15x</li>
+                            <li>Developed full-stack 48-hour solar power forecast using LSTM-CNN, GRU, Transformer models; achieved 6% error, deployed in Sun-Q EMS</li>
+                            <li>Led unsupervised PV anomaly detection (LSTM Autoencoder, LSTM-VAE, TranAD, VAE) achieving &gt;70% F1-score on real-world data</li>
+                            <li>Authored technical documentation; managed AI team using Notion and ClickUp</li>
+                            <li>Wrote two patent applications for smart grid technology</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Capstone -->
+                <div class="exp-item">
+                    <div class="exp-period">Sep 2023 &ndash;<br/>Dec 2023</div>
+                    <div class="exp-body">
+                        <h3>AI Engineer (Capstone &mdash; NetVision)</h3>
+                        <div class="exp-org">Woosong University, Daejeon, South Korea</div>
+                        <ul>
+                            <li>Collaborated with NetVision on AI-powered trash bag collection optimization using smart CCTV analytics</li>
+                            <li>Developed real-time system using YOLOv8 for detection, classification, segmentation, and tracking</li>
+                            <li>Earned 1st place in the university Capstone Competition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sequus -->
+                <div class="exp-item">
+                    <div class="exp-period">Jun 2023 &ndash;<br/>Aug 2023</div>
+                    <div class="exp-body">
+                        <h3>Computer Vision Intern</h3>
+                        <div class="exp-org">Sequus PTY LTD, Australia (Remote)</div>
+                        <ul>
+                            <li>Annotated hundreds of architectural floorplans and labeled structural components using LabelImg</li>
+                            <li>Wrote data transformation scripts for bounding box format conversion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Sparks -->
+                <div class="exp-item">
+                    <div class="exp-period">May 2023 &ndash;<br/>Jun 2023</div>
+                    <div class="exp-body">
+                        <h3>Computer Vision &amp; IoT Intern</h3>
+                        <div class="exp-org">The Sparks Foundation</div>
+                        <ul>
+                            <li>Built real-time face mask detection system using CNNs and PyTorch, achieving over 90% accuracy</li>
+                            <li>Contributed to public health monitoring during COVID-19</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PUBLICATIONS ===== -->
+        <section class="section section-alt" id="publications">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-file-alt"></i>Research &amp; Publications</h2>
+
+                <div class="pub-list">
+                    <div class="pub-item">
+                        <div class="pub-title">
+                            <a href="https://github.com/Valiev-Koyiljon/Multimodal-Video-Search-and-Interaction-with-RAG">Multimodal Effective Video Search and Interaction with RAG</a>
+                        </div>
+                        <div class="pub-authors"><span class="me">K. Valiev</span></div>
+                        <div class="pub-venue">Retrieval-augmented video Q&amp;A using Whisper, LLaVA, BridgeTower, LanceDB, LangChain</div>
+                        <div class="pub-links">
+                            <a href="https://github.com/Valiev-Koyiljon/Multimodal-Video-Search-and-Interaction-with-RAG" class="pub-link"><i class="fab fa-github"></i> Code</a>
                         </div>
                     </div>
 
-                    <!-- Pia Space -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div>
-                                    <div class="exp-title">Multimodal AI Engineer (Co-op)</div>
-                                </div>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-building"></i> Pia Space, Seoul</span>
-                                <span><i class="fas fa-calendar-alt"></i> Mar 2025 &ndash; Jun 2025</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li>Collected and annotated diverse anomaly video datasets (violence, falls) using CVAT and proprietary tools</li>
-                                    <li>Optimized lightweight VLMs (&lt;1B params) for video anomaly classification with dynamic sampling and prompt engineering in few-/zero-shot settings</li>
-                                    <li>Co-developed MACS 3.0, a prompt-driven multimodal system for CCTV anomaly detection, improving accuracy by ~24%</li>
-                                    <li>Built benchmark dataset with manually captioned videos for cross-modal retrieval (video-to-text, text-to-video, video-to-video)</li>
-                                    <li>Developed and evaluated cross-modal retrieval models to enhance scalable multimodal video understanding</li>
-                                    <li>Implemented multimodal explanation maps for VLMs, generating visualizations that highlight key words and regions</li>
-                                </ul>
-                            </div>
+                    <div class="pub-item">
+                        <div class="pub-title">
+                            MACS 3.0: Prompt-Driven Multimodal System for CCTV Anomaly Detection
                         </div>
+                        <div class="pub-authors"><span class="me">K. Valiev</span> et al.</div>
+                        <div class="pub-venue">Pia Space &mdash; Improved anomaly detection accuracy by ~24% using lightweight VLMs with dynamic sampling</div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Recs Innovation -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div class="exp-title">AI Team Lead | AI Engineer (Co-op)</div>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-building"></i> Recs Innovation Ltd, Naju</span>
-                                <span><i class="fas fa-calendar-alt"></i> Feb 2024 &ndash; Mar 2025</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li><strong>Bidding Prediction:</strong> Built an ML pipeline (cleaning, anomaly detection, feature engineering, clustering) reducing prediction error to 0.0017% and increasing bid win rate by 15x</li>
-                                    <li><strong>Solar Forecasting:</strong> Developed full-stack 48-hour ahead forecast using LSTM-CNN, GRU, Transformer models; achieved 6% error, deployed in Sun-Q EMS</li>
-                                    <li><strong>PV Anomaly Detection:</strong> Led unsupervised AI solution (LSTM Autoencoder, LSTM-VAE, TranAD, VAE) achieving &gt;70% F1-score on real-world data</li>
-                                    <li><strong>Leadership:</strong> Authored technical documentation; managed AI team using Notion and ClickUp for planning and tracking</li>
-                                    <li><strong>Patents:</strong> Wrote two patent applications for smart grid technology &mdash; one under review, one processed</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+        <!-- ===== PATENTS ===== -->
+        <section class="section" id="patents">
+            <h2 class="section-title"><i class="fas fa-certificate"></i>Patents</h2>
 
-                    <!-- NetVision Capstone -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div class="exp-title">AI Engineer (Capstone &mdash; Industry Partner: NetVision)</div>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-university"></i> Woosong University, Daejeon</span>
-                                <span><i class="fas fa-calendar-alt"></i> Sep 2023 &ndash; Dec 2023</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li>Collaborated with NetVision on AI-powered trash bag collection optimization using smart CCTV analytics</li>
-                                    <li>Developed real-time system using YOLOv8 to detect, classify, segment, track, and estimate trash bag sizes in video streams</li>
-                                    <li>Earned <strong>1st place</strong> in the university Capstone Competition</li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="patent-list">
+                <div class="patent-item">
+                    <div class="patent-info">
+                        <h4>Smart Grid Technology &mdash; Patent Application I</h4>
+                        <p>Recs Innovation Ltd &mdash; AI-driven smart grid optimization</p>
                     </div>
-
-                    <!-- Sequus -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div class="exp-title">Computer Vision Intern</div>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-globe"></i> Sequus PTY LTD, Australia (Remote)</span>
-                                <span><i class="fas fa-calendar-alt"></i> Jun 2023 &ndash; Aug 2023</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li>Improved architectural model accuracy through advanced image annotation techniques</li>
-                                    <li>Annotated hundreds of architectural floorplans and labeled structural components using LabelImg</li>
-                                    <li>Wrote data transformation scripts to convert model outputs into various bounding box formats</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <span class="patent-status reviewed">Processed</span>
+                </div>
+                <div class="patent-item">
+                    <div class="patent-info">
+                        <h4>Smart Grid Technology &mdash; Patent Application II</h4>
+                        <p>Recs Innovation Ltd &mdash; Intelligent energy management system</p>
                     </div>
-
-                    <!-- Sparks Foundation -->
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="card">
-                            <div class="exp-header">
-                                <div class="exp-title">Computer Vision &amp; IoT Intern</div>
-                            </div>
-                            <div class="exp-meta">
-                                <span><i class="fas fa-lightbulb"></i> The Sparks Foundation</span>
-                                <span><i class="fas fa-calendar-alt"></i> May 2023 &ndash; Jun 2023</span>
-                            </div>
-                            <div class="exp-description">
-                                <ul>
-                                    <li>Built a real-time face mask detection system using CNNs and PyTorch</li>
-                                    <li>Achieved over 90% accuracy in detecting mask usage through live camera feeds</li>
-                                    <li>Contributed to public health monitoring efforts during COVID-19</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="patent-status pending">Under Review</span>
                 </div>
             </div>
         </section>
 
         <!-- ===== SKILLS ===== -->
-        <section class="section" id="skills">
-            <div class="section-inner">
-                <div class="section-label">Expertise</div>
-                <h2 class="section-title">Professional Skills</h2>
+        <section class="section section-alt" id="skills">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-tools"></i>Skills</h2>
 
-                <div class="skills-categories">
-                    <!-- AI / ML Frameworks -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon ml"><i class="fas fa-brain"></i></div>
-                            <div class="skill-category-name">AI &amp; ML Frameworks</div>
-                        </div>
+                <div class="skills-section">
+                    <div class="skill-group">
+                        <h4>AI &amp; ML Frameworks</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">PyTorch</div>
-                            <div class="skill-tag">TensorFlow</div>
-                            <div class="skill-tag">Transformers</div>
-                            <div class="skill-tag">Accelerate</div>
-                            <div class="skill-tag">scikit-learn</div>
-                            <div class="skill-tag">Optuna</div>
-                            <div class="skill-tag">MLflow</div>
-                            <div class="skill-tag">W&amp;B</div>
-                            <div class="skill-tag">Unsloth</div>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Transformers</span>
+                            <span class="tag">Accelerate</span>
+                            <span class="tag">scikit-learn</span>
+                            <span class="tag">Optuna</span>
+                            <span class="tag">MLflow</span>
+                            <span class="tag">W&amp;B</span>
+                            <span class="tag">Unsloth</span>
                         </div>
                     </div>
 
-                    <!-- Agentic AI & LLM Tools -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon agent"><i class="fas fa-robot"></i></div>
-                            <div class="skill-category-name">Agentic AI &amp; LLM Tools</div>
-                        </div>
+                    <div class="skill-group">
+                        <h4>Agentic AI &amp; LLM Tools</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">Agno</div>
-                            <div class="skill-tag">LangChain</div>
-                            <div class="skill-tag">LangGraph</div>
-                            <div class="skill-tag">LlamaIndex</div>
-                            <div class="skill-tag">CrewAI</div>
-                            <div class="skill-tag">Ollama</div>
-                            <div class="skill-tag">Claude API</div>
-                            <div class="skill-tag">OpenAI API</div>
-                            <div class="skill-tag">Hugging Face</div>
+                            <span class="tag">Agno</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">LangGraph</span>
+                            <span class="tag">LlamaIndex</span>
+                            <span class="tag">CrewAI</span>
+                            <span class="tag">Ollama</span>
+                            <span class="tag">Claude API</span>
+                            <span class="tag">OpenAI API</span>
+                            <span class="tag">Hugging Face</span>
                         </div>
                     </div>
 
-                    <!-- Computer Vision -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon cv"><i class="fas fa-eye"></i></div>
-                            <div class="skill-category-name">Computer Vision</div>
-                        </div>
+                    <div class="skill-group">
+                        <h4>Computer Vision</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">OpenCV</div>
-                            <div class="skill-tag">CVAT</div>
-                            <div class="skill-tag">YOLO</div>
-                            <div class="skill-tag">LabelImg</div>
-                            <div class="skill-tag">Segment Anything</div>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">CVAT</span>
+                            <span class="tag">YOLO</span>
+                            <span class="tag">LabelImg</span>
+                            <span class="tag">Segment Anything</span>
                         </div>
                     </div>
 
-                    <!-- Data Science -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon data"><i class="fas fa-chart-line"></i></div>
-                            <div class="skill-category-name">Data Science &amp; Analysis</div>
-                        </div>
+                    <div class="skill-group">
+                        <h4>Data Science &amp; Analysis</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">Python</div>
-                            <div class="skill-tag">NumPy</div>
-                            <div class="skill-tag">Pandas</div>
-                            <div class="skill-tag">SciPy</div>
-                            <div class="skill-tag">CuPy</div>
-                            <div class="skill-tag">Matplotlib</div>
-                            <div class="skill-tag">Seaborn</div>
+                            <span class="tag">Python</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">SciPy</span>
+                            <span class="tag">CuPy</span>
+                            <span class="tag">Matplotlib</span>
+                            <span class="tag">Seaborn</span>
                         </div>
                     </div>
 
-                    <!-- DevOps & Infrastructure -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon devops"><i class="fas fa-server"></i></div>
-                            <div class="skill-category-name">DevOps &amp; Infrastructure</div>
-                        </div>
+                    <div class="skill-group">
+                        <h4>DevOps &amp; Infrastructure</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">Docker</div>
-                            <div class="skill-tag">Docker Compose</div>
-                            <div class="skill-tag">CI/CD</div>
-                            <div class="skill-tag">Nginx</div>
-                            <div class="skill-tag">Linux</div>
-                            <div class="skill-tag">AWS</div>
-                            <div class="skill-tag">GCP</div>
-                            <div class="skill-tag">PostgreSQL</div>
-                            <div class="skill-tag">Redis</div>
-                            <div class="skill-tag">Git</div>
-                            <div class="skill-tag">GitHub</div>
+                            <span class="tag">Docker</span>
+                            <span class="tag">Docker Compose</span>
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">Nginx</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">GCP</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">GitHub</span>
                         </div>
                     </div>
 
-                    <!-- APIs & Demo -->
-                    <div class="skill-category reveal">
-                        <div class="skill-category-header">
-                            <div class="skill-category-icon acad"><i class="fas fa-code"></i></div>
-                            <div class="skill-category-name">APIs &amp; Prototyping</div>
-                        </div>
+                    <div class="skill-group">
+                        <h4>APIs &amp; Prototyping</h4>
                         <div class="skill-tags">
-                            <div class="skill-tag">FastAPI</div>
-                            <div class="skill-tag">Gradio</div>
-                            <div class="skill-tag">Streamlit</div>
-                            <div class="skill-tag">UV</div>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Gradio</span>
+                            <span class="tag">Streamlit</span>
+                            <span class="tag">UV</span>
                         </div>
                     </div>
                 </div>
@@ -1346,266 +1144,137 @@
 
         <!-- ===== EDUCATION ===== -->
         <section class="section" id="education">
-            <div class="section-inner">
-                <div class="section-label">Background</div>
-                <h2 class="section-title">Education</h2>
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i>Education</h2>
 
-                <div class="card reveal">
-                    <div class="edu-content">
-                        <div class="edu-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="edu-details">
-                            <h3>Bachelor of Engineering in AI &amp; Big Data</h3>
-                            <div class="edu-meta">
-                                <span><i class="fas fa-university"></i> Woosong University, Daejeon, South Korea</span>
-                                <span><i class="fas fa-calendar-alt"></i> 2021 &ndash; 2025</span>
-                            </div>
-                            <p>
-                                Coursework: Artificial Intelligence, Machine Learning (Theory &amp; Lab), Computer Vision,
-                                Data Visualization, Statistics, Linear Algebra, Discrete Mathematics, Capstone Project.
-                                Focused on both theoretical foundations and practical applications of AI, including intelligent systems,
-                                data-driven solutions, and AI-powered software tools.
-                            </p>
-                        </div>
-                    </div>
+            <div class="edu-item">
+                <div class="edu-period">2021 &ndash; 2025</div>
+                <div class="edu-body">
+                    <h3>B.Eng. in Artificial Intelligence &amp; Big Data</h3>
+                    <div class="edu-school">Woosong University, Daejeon, South Korea</div>
+                    <p>
+                        Coursework: Artificial Intelligence, Machine Learning (Theory &amp; Lab), Computer Vision,
+                        Data Visualization, Statistics, Linear Algebra, Discrete Mathematics, Capstone Project.
+                    </p>
                 </div>
+            </div>
+        </section>
+
+        <!-- ===== ACHIEVEMENTS ===== -->
+        <section class="section section-alt" id="achievements">
+            <div class="container">
+                <h2 class="section-title"><i class="fas fa-trophy"></i>Achievements &amp; Awards</h2>
+
+                <ul class="achievements-list">
+                    <li><i class="fas fa-medal"></i> <strong>1st Place</strong> &mdash; Woosong University Capstone Competition (2023) for AI-powered trash bag detection system</li>
+                    <li><i class="fas fa-certificate"></i> <strong>Two Patent Applications</strong> for smart grid technology at Recs Innovation (2024)</li>
+                    <li><i class="fas fa-chart-line"></i> Improved CCTV anomaly detection accuracy by <strong>~24%</strong> with MACS 3.0 at Pia Space</li>
+                    <li><i class="fas fa-bullseye"></i> Reduced bidding prediction error to <strong>0.0017%</strong> and increased win rate by <strong>15x</strong> at Recs Innovation</li>
+                    <li><i class="fas fa-solar-panel"></i> Deployed 48-hour solar power forecasting with only <strong>6% error</strong> into production EMS</li>
+                </ul>
             </div>
         </section>
 
         <!-- ===== PROJECTS ===== -->
         <section class="section" id="projects">
-            <div class="section-inner">
-                <div class="section-label">Portfolio</div>
-                <h2 class="section-title">Featured Projects</h2>
+            <h2 class="section-title"><i class="fas fa-code-branch"></i>Featured Projects</h2>
 
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="project-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3>Multimodal Video Search &amp; Interaction with RAG</h3>
-                        <p>
-                            Retrieval-augmented video Q&amp;A system integrating state-of-the-art retrieval techniques
-                            to enhance user interaction with video content through natural language queries.
-                        </p>
-                        <div class="project-tech">
-                            <span>Whisper</span>
-                            <span>LLaVA</span>
-                            <span>BridgeTower</span>
-                            <span>LanceDB</span>
-                            <span>LangChain</span>
-                            <span>Gradio</span>
-                        </div>
-                        <a href="https://github.com/Valiev-Koyiljon/Multimodal-Video-Search-and-Interaction-with-RAG"
-                           class="project-link" target="_blank" rel="noopener" aria-label="View Multimodal Video Search project on GitHub">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3>Neural Conversational Chatbot</h3>
-                        <p>
-                            Seq2seq chatbot in PyTorch with bidirectional GRU encoder and Luong global attention,
-                            trained on 220K+ Cornell Movie-Dialogs pairs with attention-weight visualization.
-                        </p>
-                        <div class="project-tech">
-                            <span>PyTorch</span>
-                            <span>Seq2Seq</span>
-                            <span>GRU</span>
-                            <span>Attention</span>
-                        </div>
-                        <a href="https://github.com/Valiev-Koyiljon/seq2seq-attention-chatbot"
-                           class="project-link" target="_blank" rel="noopener" aria-label="View Neural Chatbot project on GitHub">
-                            View on GitHub <i class="fas fa-arrow-right"></i>
-                        </a>
+            <div class="projects-list">
+                <div class="project-item">
+                    <h4><a href="https://github.com/Valiev-Koyiljon/Multimodal-Video-Search-and-Interaction-with-RAG" target="_blank" rel="noopener">Multimodal Video Search &amp; Interaction with RAG</a></h4>
+                    <p>Retrieval-augmented video Q&amp;A integrating state-of-the-art retrieval techniques for natural language video interaction.</p>
+                    <div class="project-tags">
+                        <span>Whisper</span><span>LLaVA</span><span>BridgeTower</span><span>LanceDB</span><span>LangChain</span><span>Gradio</span>
                     </div>
                 </div>
-
-                <div style="text-align: center; margin-top: 2.5rem;">
-                    <a href="Last_UPDATED_PORTFOLIO.pdf" class="btn btn-outline" target="_blank" rel="noopener">
-                        <i class="fas fa-briefcase"></i> View Complete Portfolio
-                    </a>
+                <div class="project-item">
+                    <h4><a href="https://github.com/Valiev-Koyiljon/seq2seq-attention-chatbot" target="_blank" rel="noopener">Neural Conversational Chatbot</a></h4>
+                    <p>Seq2seq chatbot with bidirectional GRU encoder and Luong global attention, trained on 220K+ Cornell Movie-Dialogs pairs.</p>
+                    <div class="project-tags">
+                        <span>PyTorch</span><span>Seq2Seq</span><span>GRU</span><span>Attention</span>
+                    </div>
                 </div>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <a href="Last_UPDATED_PORTFOLIO.pdf" class="btn btn-outline" target="_blank" rel="noopener">
+                    <i class="fas fa-folder-open"></i> View Complete Portfolio
+                </a>
             </div>
         </section>
 
         <!-- ===== CONTACT ===== -->
         <section class="section" id="contact">
-            <div class="section-inner">
-                <div class="section-label">Connect</div>
-                <h2 class="section-title">Get In Touch</h2>
+            <h2 class="section-title"><i class="fas fa-envelope"></i>Contact</h2>
 
-                <div class="contact-grid">
-                    <div class="contact-item reveal">
-                        <div class="contact-item-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-item-text">
-                            <h4>Email</h4>
-                            <p>valievkoyiljon112@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-item-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-item-text">
-                            <h4>Phone</h4>
-                            <p>+82-010-2253-3010</p>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-item-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-item-text">
-                            <h4>Location</h4>
-                            <p>Tashkent, Uzbekistan</p>
-                        </div>
-                    </div>
-                    <div class="contact-item reveal">
-                        <div class="contact-item-icon">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <div class="contact-item-text">
-                            <h4>Nationality</h4>
-                            <p>Uzbekistan</p>
-                        </div>
-                    </div>
+            <div class="contact-grid">
+                <div class="contact-row">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:valievkoyiljon112@gmail.com">valievkoyiljon112@gmail.com</a>
                 </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/Valiev-Koyiljon" class="social-link" target="_blank" rel="noopener" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/koyiljonvaliev2003/" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://medium.com/@valievkoyiljon112" class="social-link" target="_blank" rel="noopener" aria-label="Medium">
-                        <i class="fab fa-medium"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@KoyiljonValiev" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://jovian.com/valievkoyiljon112" class="social-link" target="_blank" rel="noopener" aria-label="Jovian Code Portfolio">
-                        <i class="fas fa-code"></i>
-                    </a>
+                <div class="contact-row">
+                    <i class="fas fa-phone"></i>
+                    <span>+82-010-2253-3010</span>
+                </div>
+                <div class="contact-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tashkent, Uzbekistan</span>
                 </div>
             </div>
+
+            <div class="contact-social">
+                <a href="https://github.com/Valiev-Koyiljon" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/koyiljonvaliev2003/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://medium.com/@valievkoyiljon112" target="_blank" rel="noopener"><i class="fab fa-medium"></i> Medium</a>
+                <a href="https://www.youtube.com/@KoyiljonValiev" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
         </section>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-copy">
-                &copy; 2025 Koyilbek Valiev. All rights reserved.
-            </div>
-            <div class="footer-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
+        <div class="container">
+            <p>&copy; 2026 Koyilbek Valiev. Built with care.</p>
         </div>
     </footer>
 
     <script>
-        // ============================================
-        // HAMBURGER MENU
-        // ============================================
+        // Hamburger
         const hamburger = document.querySelector('.nav-hamburger');
         const navLinks = document.querySelector('.nav-links');
-
         hamburger.addEventListener('click', () => {
-            const isOpen = navLinks.classList.toggle('open');
-            hamburger.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', isOpen);
+            const open = navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', open);
         });
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
                 navLinks.classList.remove('open');
-                hamburger.classList.remove('open');
                 hamburger.setAttribute('aria-expanded', 'false');
             });
         });
 
-        // ============================================
-        // SMOOTH SCROLL
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // ============================================
-        // ACTIVE NAV LINK (Intersection Observer)
-        // ============================================
+        // Active nav
         const sections = document.querySelectorAll('section[id]');
         const navAnchors = document.querySelectorAll('.nav-links a');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -70% 0px',
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        const obs = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navAnchors.forEach(a => a.classList.remove('active'));
-                    const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
-                    if (activeLink) activeLink.classList.add('active');
+                    const link = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+                    if (link) link.classList.add('active');
                 }
             });
-        }, observerOptions);
-
-        sections.forEach(section => observer.observe(section));
-
-        // ============================================
-        // SCROLL REVEAL
-        // ============================================
-        const revealElements = document.querySelectorAll('.reveal');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, {
-            root: null,
-            rootMargin: '0px 0px -60px 0px',
-            threshold: 0.1
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // ============================================
-        // NAV SCROLL EFFECT
-        // ============================================
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        }, { passive: true });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+        sections.forEach(s => obs.observe(s));
     </script>
 </body>
 </html>
