@@ -1,8 +1,9 @@
 {
-  "title": "Investigating a Reinforcement Learning Framework for Smart Grid Energy Management",
+  "title": "A Study of Reinforcement Learning Framework for Energy Management in Smart Grids: Integrating Market Trading, Load Forecasting, and Vertical Agents",
   "type": "paper",
-  "date": "2026-03-01",
-  "description": "Market Trading, Demand Forecasting, and Vertical Agent Integration",
-  "venue": "JKICS, Vol. 51, Issue 2, 2026",
-  "status": "published"
+  "date": "2026-02-01",
+  "description": "Reinforcement learning framework integrating market trading, load forecasting, and vertical agents for smart grid energy management.",
+  "venue": "KICS, Vol. 51, No. 2, pp. 324–347, Feb. 2026",
+  "status": "published",
+  "link": "https://journal.kics.or.kr/digital-library/105868"
 }
