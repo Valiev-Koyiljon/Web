@@ -20,4 +20,4 @@ This patent was invented by Koyiljon Valiev during his tenure at Recs Innovation
 
 ## Download
 
-[📄 View Patent PDF](../patents/ESS_patent_KR.pdf)
+[📄 View ESS Patent PDF (Issued by KIPO, South Korea)](patents/ESS_patent_KR.pdf)
