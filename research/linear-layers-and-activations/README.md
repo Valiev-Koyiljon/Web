@@ -162,227 +162,515 @@ With activations:
   (Universal Approximation Theorem)
 ```
 
----
-
-### Sigmoid
+Two properties every activation must have:
 
 ```
-Formula:    σ(x) = 1 / (1 + e⁻ˣ)
+  1. NONLINEAR  — otherwise stacking layers is pointless
+  2. DIFFERENTIABLE (or mostly so) — gradients must flow during backprop
+```
 
-Output range: (0, 1)
+---
 
-      1.0 ┤                ╭──────────────
-      0.5 ┤           ╭───╯
-      0.0 ┤──────────╯
-          └──────────────────────────── x
-               -5    0    +5
+### 1. Sigmoid
 
-Derivative:   σ'(x) = σ(x) · (1 - σ(x))
-              Max value = 0.25 (at x=0)
-              At x=±5: σ'≈ 0.007  ← nearly zero
+**Introduced:** 1986 (Rumelhart et al., backpropagation paper)
+
+```
+Formula:
+  σ(x) = 1 / (1 + e⁻ˣ)
+
+Output range: (0, 1)   — strictly between 0 and 1, never reaches either
+
+Derivative:
+  σ'(x) = σ(x) · (1 - σ(x))
+         = e⁻ˣ / (1 + e⁻ˣ)²
+```
+
+**Output curve and derivative:**
+
+```
+  Output σ(x):                    Derivative σ'(x):
+
+  1.0 ┤              ╭─────       0.25┤     ╭───╮
+  0.8 ┤          ╭──╯             0.20┤   ╭╯   ╰╮
+  0.5 ┤─────────╱                 0.10┤ ╭╯       ╰╮
+  0.2 ┤    ╭───╯                  0.0 ┤╯           ╰──
+  0.0 ┤───╯                           └────────────────
+      └──────────────── x                  -5  0  +5
+           -5  0  +5
+```
+
+**Numerical values:**
+
+```
+  x      σ(x)    σ'(x)
+  ─────────────────────
+  -5     0.007   0.007   ← near-zero gradient
+  -3     0.047   0.045
+  -1     0.269   0.197
+   0     0.500   0.250   ← max gradient = 0.25
+  +1     0.731   0.197
+  +3     0.953   0.045
+  +5     0.993   0.007   ← near-zero gradient
 ```
 
 **Problem — Vanishing Gradients:**
 
 ```
-During backpropagation, gradients are multiplied layer by layer.
-Sigmoid's derivative is at most 0.25 everywhere.
+During backpropagation, gradients multiply across layers:
 
-In a 10-layer network:
-  gradient ≈ 0.25¹⁰ = 0.000001   ← vanished
+  ∂L/∂W₁ = ∂L/∂y · σ'(layer_n) · σ'(layer_{n-1}) · ... · σ'(layer_1)
 
-Early layers learn essentially nothing.
+  Max gradient per layer = 0.25
+
+  In a 10-layer network:
+    gradient ≈ 0.25¹⁰ = 0.0000001   ← essentially zero
+    Layer 1 never learns.
+
+  In a 20-layer network:
+    gradient ≈ 0.25²⁰ ≈ 10⁻¹²      ← completely dead
 ```
 
-**Use today:** Output layer for binary classification only (`P(class=1)`).
+**Problem — Not Zero-Centered:**
+
+```
+  σ(x) always outputs positive values (0 to 1).
+  Gradients flowing back are always the same sign.
+  This causes zig-zag weight updates — slower convergence.
+
+  Example: to move weights both up and down simultaneously,
+  the optimizer must take a zig-zag path instead of a direct one.
+```
+
+**Use today:** Output layer only — `P(class=1)` in binary classification.
 
 ---
 
-### Tanh
+### 2. Tanh (Hyperbolic Tangent)
+
+**Introduced:** 1990s — widely adopted for RNNs
 
 ```
-Formula:    tanh(x) = (eˣ - e⁻ˣ) / (eˣ + e⁻ˣ)
+Formula:
+  tanh(x) = (eˣ - e⁻ˣ) / (eˣ + e⁻ˣ)
 
-Output range: (-1, 1)
+Relationship to sigmoid:
+  tanh(x) = 2 · σ(2x) - 1   ← just a rescaled sigmoid
 
-       1.0 ┤               ╭─────────────
-       0.0 ┤──────────────╱──────────────
-      -1.0 ┤─────────────╯
-           └──────────────────────────── x
-                -5    0    +5
+Output range: (-1, 1)   — zero-centered
 
-Derivative:   tanh'(x) = 1 - tanh²(x)
-              Max value = 1.0 (at x=0)
-              At x=±3: tanh'≈ 0.01  ← saturates here too
+Derivative:
+  tanh'(x) = 1 - tanh²(x)
 ```
 
-**Improvement over Sigmoid:**
+**Output curve and derivative:**
 
 ```
-  Sigmoid:  output ∈ (0, 1)   — not zero-centered
-            gradients always positive → zig-zag gradient updates
+  Output tanh(x):                 Derivative tanh'(x):
 
-  Tanh:     output ∈ (-1, 1)  — zero-centered
-            gradients can be positive or negative → cleaner updates
-
-Still saturates at extremes. Largely replaced by ReLU for hidden layers.
+  1.0 ┤            ╭──────        1.0 ┤    ╭─╮
+  0.5 ┤        ╭──╯               0.5 ┤  ╭╯  ╰╮
+  0.0 ┤───────╱───────────        0.0 ┤╭╯      ╰──────
+ -0.5 ┤   ╰──╮                       └────────────────
+ -1.0 ┤──────╯                             -3  0  +3
+      └──────────────── x
+           -3  0  +3
 ```
 
-**Use today:** RNNs (LSTM cell state gates), DyT normalization layer.
+**Numerical values:**
+
+```
+  x      tanh(x)   tanh'(x)
+  ──────────────────────────
+  -3     -0.995    0.010   ← near-zero gradient
+  -2     -0.964    0.071
+  -1     -0.762    0.420
+   0      0.000    1.000   ← max gradient = 1.0
+  +1      0.762    0.420
+  +2      0.964    0.071
+  +3      0.995    0.010   ← near-zero gradient
+```
+
+**Tanh vs Sigmoid:**
+
+```
+  ┌──────────────┬───────────────────┬───────────────────────┐
+  │              │ Sigmoid           │ Tanh                  │
+  ├──────────────┼───────────────────┼───────────────────────┤
+  │ Output range │ (0, 1)            │ (-1, 1)               │
+  │ Zero-centered│ No                │ Yes                   │
+  │ Max gradient │ 0.25              │ 1.0                   │
+  │ Saturates    │ Yes (x > ±5)      │ Yes (x > ±3)          │
+  └──────────────┴───────────────────┴───────────────────────┘
+
+  Tanh has 4× larger gradients at center → faster learning.
+  But still saturates → still causes vanishing gradients in deep nets.
+```
+
+**Use today:** LSTM and GRU gates, DyT normalization (as a compression function).
 
 ---
 
-### ReLU (Rectified Linear Unit)
+### 3. ReLU (Rectified Linear Unit)
+
+**Introduced:** 2010 (Nair & Hinton); popularized by AlexNet 2012
 
 ```
-Formula:    ReLU(x) = max(0, x)
+Formula:
+  ReLU(x) = max(0, x)
+
+Equivalent to:
+  ReLU(x) = x   if x > 0
+           = 0   if x ≤ 0
 
 Output range: [0, ∞)
 
-      out ┤              ╱
-          ┤             ╱
-          ┤            ╱
-      0.0 ┤───────────╱
-          └──────────────────────────── x
-                      0
-
-Derivative:   ReLU'(x) = 1  if x > 0
-                        = 0  if x ≤ 0
+Derivative:
+  ReLU'(x) = 1   if x > 0
+            = 0   if x ≤ 0
+            = undefined at x=0 (in practice, set to 0 or 0.5)
 ```
 
-**Why ReLU dominated (2012–2020):**
+**Output curve and derivative:**
 
 ```
-  1. No saturation for x > 0  →  gradients don't vanish
-  2. Computationally trivial   →  just a max(0, x)
-  3. Sparse activations        →  ~50% neurons output 0
-                                  sparse = efficient
+  Output ReLU(x):                 Derivative ReLU'(x):
+
+  3.0 ┤              ╱           1.0 ┤         ──────────
+  2.0 ┤             ╱            0.5 ┤
+  1.0 ┤            ╱             0.0 ┤─────────
+  0.0 ┤───────────╱                  └────────────────────
+      └──────────────── x                   0
+            -3  0  +3
+```
+
+**Numerical values:**
+
+```
+  x      ReLU(x)   ReLU'(x)
+  ──────────────────────────
+  -3      0.000    0         ← dead zone
+  -1      0.000    0
+   0      0.000    0
+  +1      1.000    1
+  +2      2.000    1
+  +3      3.000    1         ← full gradient, no saturation
+```
+
+**Why ReLU solved the vanishing gradient problem:**
+
+```
+  For x > 0:  gradient = 1 exactly, no matter how large x is.
+  No shrinkage. Gradients flow perfectly through positive neurons.
+
+  10-layer network with all positive activations:
+    gradient = 1¹⁰ = 1.0   ← no vanishing!
+
+  This is why AlexNet (2012) was a breakthrough — first deep
+  network to train reliably without vanishing gradients.
 ```
 
 **Problem — Dying ReLU:**
 
 ```
-If a neuron's pre-activation is always negative:
-  ReLU(x) = 0  always
-  gradient = 0  always
-  weights never update
-  neuron is permanently "dead"
+If a neuron receives negative input consistently:
+  pre-activation = Wx + b < 0  always
+  ReLU output    = 0  always
+  gradient       = 0  always
+  ΔW             = 0  always   ← weights never update
 
-Can affect 10–40% of neurons in poorly initialized networks.
+The neuron is "dead" — permanently stuck, contributing nothing.
+Can affect 10–40% of neurons with bad initialization or high LR.
 ```
 
-**Variants to fix dying ReLU:**
+**ReLU Variants:**
 
 ```
-  Leaky ReLU:   f(x) = max(0.01x, x)      ← small slope for x<0
-  ELU:          f(x) = x        if x ≥ 0
-                       α(eˣ - 1) if x < 0  ← smooth negative
-  PReLU:        f(x) = max(αx, x)          ← α is learned
+  Leaky ReLU:  f(x) = max(0.01x, x)
+               Small negative slope → neurons can recover
+               Gradient is never exactly 0
+
+  PReLU:       f(x) = max(αx, x)
+               α is a learned parameter
+               Network decides how "leaky" to be
+
+  ELU:         f(x) = x           if x ≥ 0
+                    = α(eˣ - 1)   if x < 0
+               Smooth at x=0, mean output closer to 0
+
+  ┌─────────────┬──────────────────────────────────────────────┐
+  │ Variant     │ Negative region behaviour                    │
+  ├─────────────┼──────────────────────────────────────────────┤
+  │ ReLU        │ exactly 0 — neurons can die                  │
+  │ Leaky ReLU  │ 0.01x — tiny gradient, neurons survive       │
+  │ PReLU       │ αx (learned) — adaptive                      │
+  │ ELU         │ α(eˣ-1) — smooth, saturates to -α           │
+  └─────────────┴──────────────────────────────────────────────┘
 ```
 
-**Use today:** Still common in CNNs. Mostly replaced by GELU in transformers.
+**Use today:** Standard in CNNs (ResNet, VGG, EfficientNet). Largely replaced by GELU in transformers.
 
 ---
 
-### GELU (Gaussian Error Linear Unit)
+### 4. GELU (Gaussian Error Linear Unit)
+
+**Introduced:** Hendrycks & Gimpel, 2016. Adopted widely in 2018 with BERT.
 
 ```
-Formula:    GELU(x) = x · Φ(x)
+Formula:
+  GELU(x) = x · Φ(x)
 
   Φ(x) = CDF of the standard normal distribution
+        = P(X ≤ x)  where X ~ N(0, 1)
         = (1/2) · [1 + erf(x / √2)]
 
-Fast approximation:
+  Interpretation: multiply x by the probability that a standard
+  normal random variable is ≤ x. Small x gets suppressed
+  proportionally to how "unlikely" it is to be active.
+
+Fast approximation (used in practice):
   GELU(x) ≈ 0.5 · x · (1 + tanh(√(2/π) · (x + 0.044715·x³)))
 
-Output range: (-0.17, ∞)
-
-      out ┤               ╱
-          ┤              ╱
-      0.0 ┤─────────────╱──────────────
-          ┤      ╲     ╱
-     -0.17┤       ╰───╯
-          └──────────────────────────── x
-               -3   0   +3
-
-Derivative: smooth everywhere, no dead neurons.
+Output range: approximately (-0.17, ∞)
+  Minimum at x ≈ -0.75:  GELU(-0.75) ≈ -0.17
 ```
 
-**Why GELU replaced ReLU in transformers:**
+**Output curve and derivative:**
 
 ```
-  ReLU:  hard gate — either 0 or pass through
-         not smooth at x=0 (kink in the curve)
+  Output GELU(x):                 Derivative GELU'(x):
 
-  GELU:  soft gate — weights input by how likely it is
-         to be positive (under a normal distribution)
-         smooth everywhere — better gradient flow
-
-  Intuition: GELU "stochastically" zeroes inputs proportional
-  to how small they are. Small activations are suppressed
-  softly, not hard-clipped to 0.
+  3.0 ┤               ╱          1.1 ┤           ╭──────
+  2.0 ┤              ╱           1.0 ┤        ╭──╯
+  1.0 ┤           ╭─╱            0.5 ┤   ╭───╯
+  0.0 ┤──────────╱               0.0 ┤───╯
+ -0.1 ┤       ╰──╯                   └────────────────────
+      └──────────────── x                  -3   0   +3
+            -3   0   +3
 ```
 
-**Ablation (BERT pre-training, from the paper):**
+**Numerical values:**
 
 ```
-  Activation   │  GLUE Score
-  ─────────────┼─────────────
-  ReLU         │  82.1
-  ELU          │  82.3
-  GELU         │  82.8  ← best
+  x      GELU(x)   GELU'(x)
+  ──────────────────────────
+  -3     -0.004    0.020
+  -2     -0.045    0.085
+  -1     -0.159    0.317
+  -0.75  -0.170    0.254   ← minimum output
+   0      0.000    0.500
+  +1      0.841    1.083
+  +2      1.954    1.086
+  +3      2.996    1.013
+```
 
-Used in: BERT, GPT-2, GPT-3, ViT, RoBERTa, T5 — standard
-for nearly all transformer architectures 2018–2023.
+**GELU vs ReLU — the key difference:**
+
+```
+  Input x = -0.5:
+    ReLU(-0.5)  = 0.000   ← hard clipped to zero
+    GELU(-0.5)  = -0.154  ← small negative, not fully suppressed
+
+  Input x = 0.5:
+    ReLU(0.5)   = 0.500   ← passes through exactly
+    GELU(0.5)   = 0.346   ← slightly suppressed (38% chance of being negative)
+
+  Input x = 2.0:
+    ReLU(2.0)   = 2.000   ← passes through exactly
+    GELU(2.0)   = 1.954   ← passes through almost fully (95% chance positive)
+
+  ReLU:  binary gate — 0 or identity
+  GELU:  soft probabilistic gate — suppresses proportionally to negativity
+```
+
+**Why this matters for transformers:**
+
+```
+  Transformers process language where subtle numerical differences
+  between features carry meaning. Hard-clipping small activations
+  to zero (ReLU) loses this information.
+
+  GELU preserves small signals through soft suppression — better
+  for the nuanced feature interactions in attention-based models.
+```
+
+**Ablation (BERT pre-training):**
+
+```
+  Activation   │  GLUE Score  │  Training stability
+  ─────────────┼──────────────┼─────────────────────
+  ReLU         │  82.1        │  occasional instability
+  ELU          │  82.3        │  stable
+  GELU         │  82.8  ←     │  stable
+
+Used in: BERT, RoBERTa, GPT-2, GPT-3, ViT, T5, CLIP
+— the transformer standard from 2018 to 2022.
 ```
 
 ---
 
-### SwiGLU
+### 5. Swish (SiLU)
+
+**Introduced:** Ramachandran et al., 2017 (discovered via neural architecture search)  
+Also called **SiLU** (Sigmoid Linear Unit) — same function, different name.
 
 ```
-Formula:    SwiGLU(x, W, V) = Swish(xW) ⊙ (xV)
+Formula:
+  Swish(x) = x · σ(x)
+           = x / (1 + e⁻ˣ)
 
-  Swish(x)  = x · σ(x)    (sigmoid-weighted linear)
-  ⊙          = element-wise multiplication (gating)
+  SiLU(x)  = x · sigmoid(x)   ← identical to Swish
 
-Expanded:
-  gate   = Swish(x · W₁ + b₁)   ← "what to pass through"
-  value  = x · W₂ + b₂          ← "the actual values"
-  output = gate ⊙ value
+Output range: approximately (-0.28, ∞)
+  Minimum at x ≈ -1.28:  Swish(-1.28) ≈ -0.28
+
+Derivative:
+  Swish'(x) = σ(x) + x · σ(x) · (1 - σ(x))
+             = σ(x) · (1 + x · (1 - σ(x)))
+             = Swish(x) + σ(x) · (1 - Swish(x))
 ```
 
-**What gating means:**
+**Output curve and derivative:**
 
 ```
-Standard FFN:
-  h = GELU(x · W₁ + b₁)
-  y = h · W₂ + b₂
+  Output Swish(x):                Derivative Swish'(x):
 
-  Every feature flows through; GELU decides how much.
-
-
-SwiGLU FFN:
-  gate  = Swish(x · Wg + bg)   ← learned per-feature gate [0, 1]
-  value = x · Wv + bv
-  h     = gate ⊙ value          ← gate controls information flow
-  y     = h · W₂ + b₂
-
-  The network learns WHICH features to pass and WHICH to suppress.
-  Dynamic, input-dependent gating. Richer than a fixed nonlinearity.
+  3.0 ┤               ╱          1.1 ┤           ╭──────
+  2.0 ┤              ╱           1.0 ┤        ╭──╯
+  1.0 ┤           ╭─╱            0.5 ┤  ╭────╯
+  0.0 ┤──────────╱               0.0 ┤──╯
+ -0.2 ┤      ╰───╯              -0.1 ┤
+      └──────────────── x             └──────────────────
+            -3   0   +3                    -3   0   +3
 ```
 
-**Why the FFN needs three matrices instead of two:**
+**Numerical values:**
 
 ```
-Standard FFN with GELU:       SwiGLU FFN:
-  Linear(d, 4d)   ← 1 up      Linear(d, 8d/3)  ← gate proj
-  GELU                         Linear(d, 8d/3)  ← value proj
-  Linear(4d, d)   ← 1 down    Swish + multiply
-                               Linear(8d/3, d)  ← down proj
+  x       Swish(x)   σ(x)    x·σ(x)
+  ────────────────────────────────────
+  -3      -0.142     0.047   ← nearly zero, slight suppression
+  -2      -0.238     0.119
+  -1.28   -0.278     0.217   ← minimum of Swish
+  -1      -0.269     0.269
+   0       0.000     0.500
+  +1       0.731     0.731
+  +2       1.762     0.881
+  +3       2.858     0.953
+```
 
-SwiGLU needs 3 matrices, but uses 8d/3 instead of 4d width
-to keep parameter count equal to the standard FFN.
+**Swish vs ReLU vs GELU:**
+
+```
+  x = -1.0:
+    ReLU:   0.000   ← hard zero
+    GELU:  -0.159   ← slight suppression
+    Swish: -0.269   ← stronger suppression (self-gated by sigmoid)
+
+  x = 0.0:
+    ReLU:   0.000
+    GELU:   0.000
+    Swish:  0.000   ← all zero at origin
+
+  x = 1.0:
+    ReLU:   1.000
+    GELU:   0.841
+    Swish:  0.731   ← most suppressive of the three for small positives
+
+  x = 3.0:
+    ReLU:   3.000
+    GELU:   2.996
+    Swish:  2.858   ← all nearly identical for large positives
+```
+
+**The self-gating intuition:**
+
+```
+  Swish(x) = x · σ(x)
+              ↑   ↑
+           value gate
+
+  The input x gates itself: σ(x) ∈ (0,1) acts as a smooth
+  learnable gate determined by the value itself.
+  Positive values open the gate; negative values suppress it.
+
+  Unlike ReLU which uses a fixed threshold (0),
+  Swish uses the value's own sign as a soft continuous gate.
+```
+
+**Use today:** Core component of SwiGLU. Used standalone in EfficientNet and MobileNetV3.
+
+---
+
+### 6. SwiGLU
+
+**Introduced:** Noam Shazeer, 2020 ("GLU Variants Improve Transformer")
+
+SwiGLU is not a simple activation — it is a **gated FFN variant** that uses Swish as its gating mechanism. Understanding Swish first makes SwiGLU clear.
+
+```
+Formula:
+  SwiGLU(x, Wg, Wv) = Swish(x · Wg) ⊙ (x · Wv)
+
+  ⊙ = element-wise multiplication
+
+Expanded into the full FFN:
+  gate  = Swish(x · Wg + bg)   ← gate branch: what to suppress
+  value = x · Wv + bv          ← value branch: the raw features
+  h     = gate ⊙ value         ← element-wise: gate controls flow
+  out   = h · Wd + bd          ← down-projection back to d
+```
+
+**Gating — what it means:**
+
+```
+  Standard FFN (GELU):               SwiGLU FFN:
+
+  x ──→ Linear(d, 4d) ──→ GELU      x ──→ Linear(d, 8d/3) → Swish → gate
+        ──→ Linear(4d, d)             x ──→ Linear(d, 8d/3) ──────── value
+                                            gate ⊙ value
+                                      ──→ Linear(8d/3, d)
+
+  GELU: single projection; fixed nonlinearity decides suppression.
+
+  SwiGLU: TWO projections; one becomes the gate, the other the value.
+          The gate is input-dependent — different inputs generate
+          different gates. Richer than a fixed nonlinearity.
+```
+
+**Concrete example:**
+
+```
+  Suppose d=4, hidden=4 (toy example):
+
+  Input x = [1.0, -0.5, 2.0, 0.3]
+
+  After gate projection + Swish:
+    gate = Swish([0.8, -0.2, 1.5, 0.1]) = [0.66, -0.10, 1.24, 0.05]
+
+  After value projection:
+    value = [0.5, 1.2, -0.3, 0.9]
+
+  Output = gate ⊙ value:
+    h = [0.66·0.5, (-0.10)·1.2, 1.24·(-0.3), 0.05·0.9]
+      = [0.33, -0.12, -0.37, 0.045]
+
+  The gate selectively amplified feature 0 and feature 2,
+  and nearly zeroed feature 3 — a dynamic, input-dependent filter.
+```
+
+**Why 8d/3 instead of 4d:**
+
+```
+  Standard FFN params (d=768, expansion=4):
+    Linear(768, 3072) + Linear(3072, 768) = 2 × 768 × 3072 = 4,718,592
+
+  SwiGLU FFN params (d=768, hidden=2048):
+    Linear(768, 2048) × 2 (gate + value)
+    + Linear(2048, 768)
+    = 2×768×2048 + 2048×768 = 3×768×2048 = 4,718,592
+
+  8d/3 ≈ 2048 for d=768. Same total parameters, three matrices.
 ```
 
 **Ablation (PaLM paper):**
@@ -395,7 +683,31 @@ to keep parameter count equal to the standard FFN.
   SwiGLU        │  7.6  ← best
 
 Used in: LLaMA 2, LLaMA 3, PaLM, Gemma, Mistral, Qwen, DeepSeek
-— the standard activation for all modern open-source LLMs.
+— the default FFN activation for all modern open-source LLMs.
+```
+
+---
+
+### All Five Functions Side by Side
+
+```
+  Input:  x = [-3, -1, 0, 1, 3]
+
+  ┌─────────┬────────┬────────┬────────┬────────┬────────┐
+  │  x      │ Sigmoid│  Tanh  │  ReLU  │  GELU  │  Swish │
+  ├─────────┼────────┼────────┼────────┼────────┼────────┤
+  │  -3.0   │  0.047 │ -0.995 │  0.000 │ -0.004 │ -0.142 │
+  │  -1.0   │  0.269 │ -0.762 │  0.000 │ -0.159 │ -0.269 │
+  │   0.0   │  0.500 │  0.000 │  0.000 │  0.000 │  0.000 │
+  │  +1.0   │  0.731 │  0.762 │  1.000 │  0.841 │  0.731 │
+  │  +3.0   │  0.953 │  0.995 │  3.000 │  2.996 │  2.858 │
+  └─────────┴────────┴────────┴────────┴────────┴────────┘
+
+  Key observations:
+  - Sigmoid and Tanh: bounded outputs, saturate at extremes
+  - ReLU: exact zeros for negatives, identity for positives
+  - GELU and Swish: smooth, small negative dip, near-identity for large positives
+  - Swish is more suppressive than GELU for moderate negatives (-1 to 0)
 ```
 
 ---
