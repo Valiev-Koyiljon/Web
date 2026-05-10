@@ -1,0 +1,8 @@
+{
+  "title": "Linear Layers & Activation Functions: The Building Blocks of Neural Networks",
+  "type": "tutorial",
+  "date": "2026-05-10",
+  "description": "A deep-dive into linear transformations, weight matrices, and activation functions — the two primitives every neural network is built from.",
+  "venue": "Original article by Koyilbek Valiev",
+  "status": "published"
+}

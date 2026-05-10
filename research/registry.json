@@ -3,5 +3,6 @@
   "ess-patent",
   "vision-transformer",
   "deit",
-  "normalization-in-llms"
+  "normalization-in-llms",
+  "linear-layers-and-activations"
 ]
