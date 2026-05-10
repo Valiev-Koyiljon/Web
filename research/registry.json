@@ -2,5 +2,6 @@
   "rl-smartgrid",
   "ess-patent",
   "vision-transformer",
-  "deit"
+  "deit",
+  "normalization-in-llms"
 ]

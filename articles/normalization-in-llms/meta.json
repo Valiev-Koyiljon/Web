@@ -1,0 +1,7 @@
+{
+  "title": "Normalization in Modern LLMs: LayerNorm, RMSNorm, and Beyond",
+  "category": "technical",
+  "date": "2026-05-10",
+  "description": "A deep-dive into how normalization works in transformers — variance, LayerNorm, RMSNorm, DyT, DeepNorm, and why the choice matters.",
+  "readTime": "10 min"
+}
