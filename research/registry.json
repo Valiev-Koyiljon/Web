@@ -4,5 +4,6 @@
   "vision-transformer",
   "deit",
   "normalization-in-llms",
-  "linear-layers-and-activations"
+  "linear-layers-and-activations",
+  "transformers-and-attention"
 ]

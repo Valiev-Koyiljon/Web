@@ -1,0 +1,8 @@
+{
+  "title": "Transformers & Attention: How Tokens Talk to Each Other",
+  "type": "tutorial",
+  "date": "2026-05-10",
+  "description": "A deep-dive into self-attention, multi-head attention, positional encoding, RoPE, and the transformer encoder block — from math to full ViT implementation.",
+  "venue": "Original article by Koyilbek Valiev",
+  "status": "published"
+}
