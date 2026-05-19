@@ -1,0 +1,9 @@
+{
+  "title": "2D Rotary Position Embeddings for Vision: Complete Math and Implementation",
+  "type": "tutorial",
+  "date": "2026-05-19",
+  "description": "Complete derivation of Rotary Position Embeddings from complex number rotation through 1D RoPE to 2D vision — why relative position matters, how frequency bands encode spatial scale, and full PyTorch implementation with shape traces.",
+  "venue": "Based on Su et al., RoFormer (2021) arXiv:2104.09864",
+  "link": "https://arxiv.org/abs/2104.09864",
+  "status": "published"
+}

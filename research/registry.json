@@ -8,5 +8,7 @@
   "transformers-and-attention",
   "vit-production-training",
   "linear-attention-vit",
-  "modern-vit-2025"
+  "modern-vit-2025",
+  "rope-vision",
+  "dynamic-tanh"
 ]

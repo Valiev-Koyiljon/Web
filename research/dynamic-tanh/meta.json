@@ -1,0 +1,9 @@
+{
+  "title": "DynamicTanh: How Meta AI Replaced LayerNorm in 2025",
+  "type": "tutorial",
+  "date": "2026-05-19",
+  "description": "Complete mathematical and implementation walkthrough of DynamicTanh — Meta AI's 2025 drop-in LayerNorm replacement. Covers what LayerNorm actually computes step-by-step, why normalizing statistics hurt training, the tanh saturation insight, how the learnable α scale adapts, comparison against LayerNorm/RMSNorm/BatchNorm, full PyTorch implementation, and ablation intuition.",
+  "venue": "Based on Zhu et al., Transformers without Normalization (2025) arXiv:2503.10622",
+  "link": "https://arxiv.org/abs/2503.10622",
+  "status": "published"
+}
