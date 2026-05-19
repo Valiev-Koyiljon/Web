@@ -1,0 +1,9 @@
+{
+  "title": "Training ViT Right: From Unstable Loss to Production-Grade Pipeline",
+  "type": "tutorial",
+  "date": "2026-05-19",
+  "description": "Why vanilla ViT training fails on CIFAR-10, and how to fix every problem: correct model sizing, AdamW with param groups, warmup/cosine LR, AMP, gradient accumulation, and checkpointing.",
+  "venue": "Original research & engineering",
+  "link": "https://arxiv.org/abs/2010.11929",
+  "status": "published"
+}

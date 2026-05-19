@@ -1,0 +1,9 @@
+{
+  "title": "Linear Attention in Vision Transformers: Breaking the O(N²) Barrier",
+  "type": "tutorial",
+  "date": "2026-05-19",
+  "description": "How to replace O(N²) softmax attention with O(N) linear attention using the kernel trick. Full math, L2ViT alternating design, Local Concentration Module, and Flash Attention — with PyTorch implementations.",
+  "venue": "Based on L2ViT (Zheng et al., 2025) arXiv:2501.16182",
+  "link": "https://arxiv.org/abs/2501.16182",
+  "status": "published"
+}

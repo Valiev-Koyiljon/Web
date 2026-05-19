@@ -5,5 +5,8 @@
   "deit",
   "normalization-in-llms",
   "linear-layers-and-activations",
-  "transformers-and-attention"
+  "transformers-and-attention",
+  "vit-production-training",
+  "linear-attention-vit",
+  "modern-vit-2025"
 ]

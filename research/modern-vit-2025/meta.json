@@ -1,0 +1,9 @@
+{
+  "title": "Modern ViT (2025): DynamicTanh, 2D RoPE, Sub-Quadratic Attention, and Production Training",
+  "type": "tutorial",
+  "date": "2026-05-19",
+  "description": "Full walkthrough of a state-of-the-art Vision Transformer: DynamicTanh normalization (Meta 2025), 2D Rotary Position Embeddings, alternating linear and flash attention (L2ViT), 2D token shift, depthwise conv bypass, and a complete production training pipeline achieving ~85% on CIFAR-10 in under 35 seconds per epoch.",
+  "venue": "Synthesis: DyT arXiv:2503.10622 · L2ViT arXiv:2501.16182 · RoPE arXiv:2104.09864",
+  "link": "https://arxiv.org/abs/2501.16182",
+  "status": "published"
+}
